@@ -8,7 +8,71 @@ class InputBox extends Component {
       "the program only accepts up to 7 numbers",
       "the program only accepts numbers between 1-100",
     ],
+    currinput: [],
   };
+
+  sortInput = (userObj, userInput_parseToInt) => {
+    let master = [];
+    let len = userInput_parseToInt.length;
+    let swapped;
+    do {
+      swapped = false;
+      for (let i = 0; i < len - 1; i++) {
+        let num1 = { ...userObj[i] };
+        let num2 = { ...userObj[i + 1] };
+        num1.selected = true;
+        num2.selected = true;
+        // console.log(num1);
+
+        let onjr = [...userObj];
+        onjr[i] = num1;
+        onjr[i + 1] = num2;
+        // userObj[i + 1].selected = true;
+        // console.log("iser", userObj[i]);
+        master.push(onjr);
+
+        if (userObj[i].userInput > userObj[i + 1].userInput) {
+          // num1.selected = false;
+          // num2.selected = false;
+          let orj2 = [...onjr];
+          orj2[i] = num2;
+          orj2[i + 1] = num1;
+          master.push([...orj2]);
+
+          let orj3 = [...orj2];
+          let num11 = { ...orj3[i] };
+          let num12 = { ...orj3[i + 1] };
+          num11.selected = false;
+          num12.selected = false;
+
+          orj3[i] = num11;
+          orj3[i + 1] = num12;
+          master.push([...orj3]);
+          userObj = [...orj3];
+
+          // console.log("temp", userObj);
+          // userObj[i].selected = false;
+          // userObj[i + 1].selected = false;
+          // master.push([...userObj]);
+          // console.log("master", master);
+
+          // master.push(userObj);
+
+          // userObj[i].selected = false;
+          // userObj[i + 1].selected = false;
+          // master.push([...userObj]);
+          swapped = true;
+
+          // this.props.handleinpittt(newInput);
+          // this.setState({ userInputs: newInput });
+        }
+      }
+    } while (swapped);
+
+    // console.log(master);
+    this.props.tesstjamd(master);
+  };
+
   handleInputs = (e) => {
     const { errorsIndex } = this.state;
 
@@ -16,9 +80,9 @@ class InputBox extends Component {
     let userInput_parseToInt;
 
     let userInput = e.target.value;
-    console.log();
     if (userInput === "") {
       this.props.handleUsersInput([], [], [], []);
+      this.setState({ currinput: [] });
     } else {
       let userInput_commaSeperated = userInput.split(",").filter((num) => {
         return num != "";
@@ -67,6 +131,7 @@ class InputBox extends Component {
             userInput: s,
             sortPosiotion: sortedInput.indexOf(s) + 1,
             userPosition: userInput_parseToInt.indexOf(s) + 1,
+            selected: false,
           };
         });
         let sortedObj = sortedInput.map((s) => {
@@ -76,34 +141,66 @@ class InputBox extends Component {
             userPosition: userInput_parseToInt.indexOf(s) + 1,
           };
         });
+        this.setState({ currinput: userInput, userObj, userInput_parseToInt });
 
-        // console.log();
-        this.props.handleUsersInput(
-          userObj,
-          sortedObj,
-          userInput_parseToInt,
-          sortedInput
-        );
+        // this.sortInput(userObj, userInput_parseToInt);
+
+        // console.log("master", master);
+        // console.log("master", master);
+        // console.log(userObj);
+        // this.props.handleUsersInput(
+        //   userObj,
+        //   sortedObj,
+        //   userInput_parseToInt,
+        //   sortedInput
+        // );
       }
     }
   };
+
+  handlesortt = (currinput, userObj, userInput_parseToInt) => {
+    if (currinput.length > 0) {
+      // console.log(currinput);
+      // console.log(userObj);
+      // console.log(userInput_parseToInt);
+      this.sortInput(userObj, userInput_parseToInt);
+    }
+  };
   render() {
-    const { errors, errorsIndex } = this.state;
+    const { errors, errorsIndex, currinput, userObj, userInput_parseToInt } =
+      this.state;
     return (
       <>
         <form>
           <label>
             <input
-              onChange={(e) => this.handleInputs(e)}
               type="text"
+              autoComplete="off"
               name="name"
+              defaultValue="5,1,4,2,7,6,3"
+              onChange={(e) => this.handleInputs(e)}
             />
           </label>
-          {/* <input type="submit" value="Submit" /> */}
         </form>
+        <div
+          onClick={() =>
+            this.handlesortt(currinput, userObj, userInput_parseToInt)
+          }
+        >
+          sort
+        </div>
       </>
     );
   }
 }
 
 export default InputBox;
+
+// snapshots = [
+//   {
+//     userObj,
+//   },
+//   {
+//     userObj,
+//   },
+// ];

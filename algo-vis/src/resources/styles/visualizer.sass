@@ -2,65 +2,46 @@
     height: 100%
     display: grid
     grid-template-columns: 1fr
-    grid-template-rows: 1fr 2.5fr 2.5fr
+    grid-template-rows: 3.5fr 5.5fr 2.5fr 1.5fr
     gap: 0% 0%
     grid-template-areas: "." "." "."
+   
+    form
+        text-align: center
 
     input
-        // -webkit-appearance: none
-        // box-shadow : none
         appearance: none
-        box-shadow: none
         border-style: none
-        margin-top: 5em
-        height: 10%
-        width: 100%
+        height: 10% 
+        width: 80%
         color: white
-        padding: 7px
-        border-radius: 10px
+        padding: 15px
+        letter-spacing: 4px
         background: #1C7190
-        padding-left: 20px
         font-size: 1.2em
-        box-shadow: inset 20px 20px 60px 093d4d, inset -20px -20px 60px 0f82a6
-
+        border-radius: 50px
+        background: #0d7190
+        box-shadow: inset -12px 12px 30px #052d3a, inset 12px -12px 30px #15b5e6
     input:focus
         outline: none
 
-    .controls
-        height: 20%
-        width: 35%
+   
+    .sortItems
         display: flex
-        margin-top: 15%
-
-        .userInput, .sortedInput
-            height: 70%
-            width: 40%
-            border-radius: 8px
-            background: #0d7190
-            box-shadow: (12px 12px 32px 052d3a, -12px -12px 32px 15b5e6)
-            line-height: 300%
-            text-align: center
-
-        .userInput
-            margin-right: 10px
-
-        .sortItems
-            margin-left: 10px
-
-            display: flex
-            justify-content: space-evenly
-            align-items: flex-end
+        justify-content: space-evenly
+        align-items: flex-end
 
         .sortItem
             height: 100%
-            width: 50px
-            border-radius: 44px
-            background: linear-gradient(145deg, #0e799a, #0c6682)
-            box-shadow: 5px 5px 21px 0a566d, -5px -5px 21px 0c6682
+            width: 8%
+            border-radius: 50px
+            background: linear-gradient(225deg, #0e799a, #0c6682)
+            box-shadow:  -12px 12px 30px #052d3a, 12px -12px 30px #15b5e6
             color: white
             display: flex
             align-items: center
             justify-content: center
+   
 
         .sortItem1
             height: 35%

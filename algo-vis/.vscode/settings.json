@@ -1,5 +1,10 @@
 {
-    "path-intellisense.mappings": {
-        "typescript.suggest.paths": false
-    }
+  "path-intellisense.mappings": {
+    "typescript.suggest.paths": false
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "eslint.validate": ["javascript"]
 }
