@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import "../styles/inputBox.sass";
 class InputBox extends Component {
   state = {
     errorsIndex: [0, 0, 0],
@@ -170,26 +170,23 @@ class InputBox extends Component {
     const { errors, errorsIndex, currinput, userObj, userInput_parseToInt } =
       this.state;
     return (
-      <>
-        <form>
-          <label>
-            <input
-              type="text"
-              autoComplete="off"
-              name="name"
-              defaultValue="5,1,4,2,7,6,3"
-              onChange={(e) => this.handleInputs(e)}
-            />
-          </label>
-        </form>
+      <div className="inputSection">
+        <input
+          type="text"
+          autoComplete="off"
+          name="name"
+          defaultValue="5,1,4,2,7,6,3"
+          onChange={(e) => this.handleInputs(e)}
+        />
         <div
+          className="handlesort"
           onClick={() =>
             this.handlesortt(currinput, userObj, userInput_parseToInt)
           }
         >
           sort
         </div>
-      </>
+      </div>
     );
   }
 }
