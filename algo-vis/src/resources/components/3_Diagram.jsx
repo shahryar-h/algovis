@@ -80,6 +80,7 @@ let sample = [
 class Diagram extends Component {
   state = {
     counter: 0,
+    play: false,
     // userInputs: [5, 1, 4, 2, 7, 6, 3],
     // userObj: sample,
     // userInputs: ,
@@ -131,12 +132,87 @@ class Diagram extends Component {
     // this.setState({ userObj: nimm, userInputs: newInput });
   };
 
-  handlebuttonss = (e) => {
-    if (e == "next") {
+  increment = () => {
+    const { counter, play } = this.state;
+
+    console.log(counter, play);
+    if (this.state.counter + 1 <= this.props.schm.length - 1) {
       this.setState({ counter: this.state.counter + 1 });
+
+      console.log("heloooooo");
+    } else {
+      clearInterval(this.interval);
+      return;
+    }
+  };
+  decrement = () => {
+    const { counter, play } = this.state;
+
+    console.log(counter, play);
+    if (this.state.counter - 1 >= 0) {
+      this.setState({ counter: this.state.counter - 1 });
+
+      console.log("heloooooo");
+    } else {
+      clearInterval(this.interval);
+      return;
+    }
+  };
+
+  handlebuttonss = (e) => {
+    const { counter, play } = this.state;
+    console.log(counter);
+    if (e == "next") {
+      if (counter + 1 <= this.props.schm.length - 1) {
+        this.setState({ counter: this.state.counter + 1 });
+      }
+    }
+    if (e == "playPause") {
+      console.log(play);
+      if (play) {
+        this.setState({ play: !this.state.play });
+        clearInterval(this.interval);
+      } else {
+        this.setState({ play: !this.state.play });
+        if (counter <= this.props.schm.length - 1) {
+          this.interval = setInterval(
+            this.decrement,
+            // () =>
+            //   this.setState({
+            //     counter:
+            //       this.state.counter + 1 <= this.props.schm.length - 1 &&
+            //       this.state.counter + 1,
+            //   }),
+            30
+          );
+        }
+      }
+    }
+    if (e == "sss") {
+      console.log(play);
+      if (play) {
+        this.setState({ play: !this.state.play });
+        clearInterval(this.interval);
+      } else {
+        this.setState({ play: !this.state.play });
+        if (counter <= this.props.schm.length - 1) {
+          this.interval = setInterval(
+            this.decrement,
+            // () =>
+            //   this.setState({
+            //     counter:
+            //       this.state.counter + 1 <= this.props.schm.length - 1 &&
+            //       this.state.counter + 1,
+            //   }),
+            30
+          );
+        }
+      }
     }
     if (e == "prev") {
-      this.setState({ counter: this.state.counter - 1 });
+      if (counter - 1 >= 0) {
+        this.setState({ counter: this.state.counter - 1 });
+      }
     }
     if (e == "end") {
       this.setState({ counter: this.props.schm.length - 1 });
@@ -167,7 +243,11 @@ class Diagram extends Component {
           {schm[this.state.counter]?.map((item, index) => (
             <div
               key={`itemBox-${item.sortPosiotion}-${index}`}
-              className={`sortItem sortItem${item.sortPosiotion}`}
+              className={
+                item.selected
+                  ? `sortItem sortItem${item.sortPosiotion} selected`
+                  : `sortItem sortItem${item.sortPosiotion}`
+              }
             >
               {item.userInput}
               {/* {console.log()} */}
