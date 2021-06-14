@@ -10,15 +10,15 @@ class InputBox extends Component {
     ],
     inputValue: "5, 1, 4, 2, 7, 6",
     currinput: [5, 1, 4, 2, 7, 6, 3],
-    userObj: [
-      { userInput: 5, sortPosiotion: 5, userPosition: 1, selected: false },
-      { userInput: 1, sortPosiotion: 1, userPosition: 2, selected: false },
-      { userInput: 4, sortPosiotion: 4, userPosition: 3, selected: false },
-      { userInput: 2, sortPosiotion: 2, userPosition: 4, selected: false },
-      { userInput: 7, sortPosiotion: 7, userPosition: 5, selected: false },
-      { userInput: 6, sortPosiotion: 6, userPosition: 6, selected: false },
-      { userInput: 3, sortPosiotion: 3, userPosition: 7, selected: false },
-    ],
+    // userObj: [
+    //   { userInput: 5, sortPosiotion: 5, userPosition: 1, selected: false },
+    //   { userInput: 1, sortPosiotion: 1, userPosition: 2, selected: false },
+    //   { userInput: 4, sortPosiotion: 4, userPosition: 3, selected: false },
+    //   { userInput: 2, sortPosiotion: 2, userPosition: 4, selected: false },
+    //   { userInput: 7, sortPosiotion: 7, userPosition: 5, selected: false },
+    //   { userInput: 6, sortPosiotion: 6, userPosition: 6, selected: false },
+    //   { userInput: 3, sortPosiotion: 3, userPosition: 7, selected: false },
+    // ],
     userInput_parseToInt: [5, 1, 4, 2, 7, 6, 3],
     isAnimating: false,
   };
@@ -27,14 +27,19 @@ class InputBox extends Component {
     let master = [];
     let len = userInput_parseToInt.length;
     let swapped;
+    let newUserObjectSetSwap = [...userObj];
+    newUserObjectSetSwap.describeStep = [1, 1, 1, 2, 2, 1, 2];
     do {
       swapped = false;
       // set swapped to false assuming that the numbers are sorted
       // if after next round this stays false it means we have a sorted
       // array so we stop the process
-      master.push(userObj);
 
       for (let i = 0; i < len - 1; i++) {
+        // newUserObjectSetSwap.algoDescription = 22;
+        // console.log(newUserObjectSetSwap);
+
+        master.push(userObj);
         let num1 = { ...userObj[i] };
         let num2 = { ...userObj[i + 1] };
         num1.selected = true;
@@ -89,7 +94,6 @@ class InputBox extends Component {
       len = len - 1;
     } while (swapped);
 
-    console.log(master);
     this.props.tesstjamd(master);
   };
 
@@ -178,10 +182,6 @@ class InputBox extends Component {
           };
         });
 
-        console.log("userInput", userInput);
-        console.log("userObj", userObj);
-        console.log("userInput_parseToInt", userInput_parseToInt);
-
         this.setState({ currinput: userInput, userObj, userInput_parseToInt });
 
         // this.sortInput(userObj, userInput_parseToInt);
@@ -223,7 +223,6 @@ class InputBox extends Component {
       isAnimating,
       inputValue,
     } = this.state;
-    console.log(inputValue);
 
     return (
       <div className="inputSection">
