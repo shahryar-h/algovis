@@ -4,18 +4,19 @@ import styled from "styled-components";
 
 const baseStyle = "margin: 0;";
 const AlgoSteps = styled.div`
+  /* @import url("https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2&family=Mukta:wght@200&display=swap"); */
   ${baseStyle}
   /* background: palevioletred; */
   border-radius: 3px;
   border: none;
   color: white;
   /* cursor: pointer; */
-  height: 100%;
-  display: grid;
-  grid-template-rows: 1fr 3fr;
+  /* height: 100%; */
+  font-family: "Baloo Tammudu 2";
+  letter-spacing: 0rm;
 `;
 
-const Status = styled.p`
+const Status = styled.div`
   padding: 15px;
   ${baseStyle}
 `;
@@ -24,10 +25,10 @@ const SudoStep = styled(Status)`
   padding: 0px;
   /* background-color: burlywood; */
   background: ${(props) => (props.selected ? "burlywood" : "")};
-  padding: 3px;
+  /* padding: 3px; */
 `;
 const SudoStepContainer = styled.div`
-  padding: 10px;
+  /* padding: 10px; */
 `;
 
 /// constant variables
