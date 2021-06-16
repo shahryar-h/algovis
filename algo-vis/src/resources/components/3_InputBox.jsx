@@ -25,29 +25,45 @@ class InputBox extends Component {
 
   sortInput = (userObj, userInput_parseToInt) => {
     let master = [];
+    let stepsSchema = [];
     let len = userInput_parseToInt.length;
     let swapped;
     let newUserObjectSetSwap = [...userObj];
-    newUserObjectSetSwap.describeStep = [1, 1, 1, 2, 2, 1, 2];
+    stepsSchema.push([1, 1, 1, 1, 1, 1, 1]);
+    // console.log(newUserObjectSetSwap);
+    master.push(newUserObjectSetSwap);
+
     do {
       swapped = false;
       // set swapped to false assuming that the numbers are sorted
       // if after next round this stays false it means we have a sorted
       // array so we stop the process
+      // newUserObjectSetSwap[newUserObjectSetSwap.length] = [2, 2, 1, 1, 1, 1, 1];
+      stepsSchema.push([2, 2, 1, 1, 1, 1, 1]);
 
+      // console.log(newUserObjectSetSwap);
+      master.push(newUserObjectSetSwap);
       for (let i = 0; i < len - 1; i++) {
         // newUserObjectSetSwap.algoDescription = 22;
         // console.log(newUserObjectSetSwap);
+        // newUserObjectSetSwap[newUserObjectSetSwap.length] = [
+        //   2, 1, 2, 1, 1, 1, 1,
+        // ];
+        stepsSchema.push([2, 1, 2, 1, 1, 1, 1]);
 
-        master.push(userObj);
-        let num1 = { ...userObj[i] };
-        let num2 = { ...userObj[i + 1] };
+        // console.log(newUserObjectSetSwap);
+        // master.push([...newUserObjectSetSwap]);
+        // master.push([...newUserObjectSetSwap]);
+        let num1 = { ...newUserObjectSetSwap[i] };
+        let num2 = { ...newUserObjectSetSwap[i + 1] };
         num1.selected = true;
         num2.selected = true;
-        // console.log(num1);
-        // console.log(userObj);
 
-        let onjr = [...userObj];
+        // console.log(num1);
+        // i == 0 && console.log(userObj);
+        // console.log(newUserObjectSetSwap);
+        // master.push([...newUserObjectSetSwap]);
+        let onjr = [...newUserObjectSetSwap];
         onjr[i] = num1;
         onjr[i + 1] = num2;
         // userObj[i + 1].selected = true;
@@ -55,13 +71,20 @@ class InputBox extends Component {
         master.push(onjr);
         //selected num1 and two / swaps if b is greater than a
 
-        if (userObj[i].userInput > userObj[i + 1].userInput) {
+        if (
+          newUserObjectSetSwap[i].userInput >
+          newUserObjectSetSwap[i + 1].userInput
+        ) {
           // num1.selected = false;
           // num2.selected = false;
+          // onjr[onjr.length] = [2, 1, 1, 2, 2, 1, 1];
+          stepsSchema.push([2, 1, 1, 2, 2, 1, 1]);
+
           let orj2 = [...onjr];
           orj2[i] = num2;
           orj2[i + 1] = num1;
-          master.push([...orj2]);
+          master.push(orj2);
+          // console.log(master);
 
           let orj3 = [...orj2];
           let num11 = { ...orj3[i] };
@@ -71,8 +94,13 @@ class InputBox extends Component {
 
           orj3[i] = num11;
           orj3[i + 1] = num12;
-          master.push([...orj3]);
-          userObj = [...orj3];
+          // orj3[orj3.length] = [2, 1, 1, 1, 1, 2, 1];
+          stepsSchema.push([2, 1, 1, 1, 1, 2, 1]);
+
+          // console.log(orj3);
+          master.push(orj3);
+          // console.log(master);
+          newUserObjectSetSwap = [...orj3];
 
           // console.log("temp", userObj);
           // userObj[i].selected = false;
@@ -93,8 +121,8 @@ class InputBox extends Component {
       }
       len = len - 1;
     } while (swapped);
-
-    this.props.tesstjamd(master);
+    // console.log(stepsSchema);
+    this.props.tesstjamd(master, stepsSchema);
   };
 
   componentDidMount() {

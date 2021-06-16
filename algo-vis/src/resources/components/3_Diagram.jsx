@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-indent */
 import React, { Component } from "react";
 import ControlButtons from "./3_ControlButtons";
+import Steps from "./3_Steps";
 
 // eslint-disable-next-line react/prefer-stateless-function
 let sortedSample = [
@@ -135,7 +136,7 @@ class Diagram extends Component {
   increment = () => {
     const { counter, play } = this.state;
 
-    console.log(counter, play);
+    // console.log(counter, play);
     if (this.state.counter + 1 <= this.props.schm.length - 1) {
       this.setState({ counter: this.state.counter + 1 });
 
@@ -223,7 +224,14 @@ class Diagram extends Component {
   };
   render() {
     // const { sortedObj } = this.state;
-    const { sorted, sortedObj, userInputs, userObj, schm = [] } = this.props;
+    const {
+      sorted,
+      sortedObj,
+      userInputs,
+      userObj,
+      schm = [],
+      stepsSchema = [],
+    } = this.props;
 
     // const {} = this.state;
 
@@ -236,9 +244,9 @@ class Diagram extends Component {
     //     return sorted.userInput == inp;
     //   })[0];
     // });
-
     return (
       <>
+        <Steps schema={stepsSchema[this.state.counter]} />
         <div className="sortItems">
           {schm[this.state.counter]?.map((item, index) => (
             <div

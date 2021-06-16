@@ -77,15 +77,21 @@ class Visualizer extends Component {
 
     this.setState({ userObj: nimm, userInputs: e });
   };
-  tesstjamd = (schm) => {
-    this.setState({ schm });
+  tesstjamd = (schm, stepsSchema) => {
+    this.setState({ schm, stepsSchema });
   };
   render() {
-    const { userObj, sortedObj, userInputs, sortedInput, sorted, schm } =
-      this.state;
+    const {
+      userObj,
+      sortedObj,
+      userInputs,
+      sortedInput,
+      sorted,
+      schm,
+      stepsSchema,
+    } = this.state;
     return (
       <div className="vizContainer">
-        <Steps />
         <Diagram
           userObj={userObj}
           userInputs={userInputs}
@@ -94,13 +100,16 @@ class Visualizer extends Component {
           sorted={sorted}
           handleinpittt={(e) => this.handleinpittt(e)}
           schm={schm}
+          stepsSchema={stepsSchema}
         />
         {/* <ControlButtons handleSort={(e) => this.handleSort(e)} /> */}
         <InputBox
           handleUsersInput={(userObj, sortedObj, userInputs, sortedInput) =>
             this.handleUsersInput(userObj, sortedObj, userInputs, sortedInput)
           }
-          tesstjamd={(schema) => this.tesstjamd(schema)}
+          tesstjamd={(schema, stepsSchema) =>
+            this.tesstjamd(schema, stepsSchema)
+          }
         />
       </div>
     );
