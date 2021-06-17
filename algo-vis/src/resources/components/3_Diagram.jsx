@@ -231,6 +231,7 @@ class Diagram extends Component {
       userObj,
       schm = [],
       stepsSchema = [],
+      statusSchema = [],
     } = this.props;
 
     // const {} = this.state;
@@ -246,7 +247,10 @@ class Diagram extends Component {
     // });
     return (
       <>
-        <Steps schema={stepsSchema[this.state.counter]} />
+        <Steps
+          schema={stepsSchema[this.state.counter]}
+          statusSchema={statusSchema[this.state.counter]}
+        />
         <div className="sortItems">
           {schm[this.state.counter]?.map((item, index) => (
             <div

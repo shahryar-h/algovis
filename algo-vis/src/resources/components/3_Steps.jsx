@@ -43,7 +43,7 @@ const algoSteps = [
   "while swapped",
 ];
 
-export default function Steps({ schema = [] }) {
+export default function Steps({ schema = [], statusSchema }) {
   const renderSudoCodeSteps = (pattern) => {
     console.log("pattern", pattern);
     return algoSteps.map((step, i) =>
@@ -58,14 +58,13 @@ export default function Steps({ schema = [] }) {
   };
 
   return (
-    <div>
-      <AlgoSteps>
-        <Status>
-          Checking if 3 > 38 and swap them if that is true. The current value of
-          swapped = false.
-        </Status>
-        <SudoStepContainer>{renderSudoCodeSteps(schema)}</SudoStepContainer>
-      </AlgoSteps>
-    </div>
+    <>
+      <div>
+        <AlgoSteps>
+          <Status>{statusSchema}</Status>
+          <SudoStepContainer>{renderSudoCodeSteps(schema)}</SudoStepContainer>
+        </AlgoSteps>
+      </div>
+    </>
   );
 }

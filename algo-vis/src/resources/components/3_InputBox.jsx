@@ -1,5 +1,57 @@
 import React, { Component } from "react";
 import "../styles/inputBox.sass";
+
+const initial_user_input_object = [
+  {
+    userInput: 5,
+    sortPosiotion: 5,
+    userPosition: 1,
+    selected: false,
+    sorted: false,
+  },
+  {
+    userInput: 1,
+    sortPosiotion: 1,
+    userPosition: 2,
+    selected: false,
+    sorted: false,
+  },
+  {
+    userInput: 4,
+    sortPosiotion: 4,
+    userPosition: 3,
+    selected: false,
+    sorted: false,
+  },
+  {
+    userInput: 2,
+    sortPosiotion: 2,
+    userPosition: 4,
+    selected: false,
+    sorted: false,
+  },
+  {
+    userInput: 7,
+    sortPosiotion: 7,
+    userPosition: 5,
+    selected: false,
+    sorted: false,
+  },
+  {
+    userInput: 6,
+    sortPosiotion: 6,
+    userPosition: 6,
+    selected: false,
+    sorted: false,
+  },
+  {
+    userInput: 3,
+    sortPosiotion: 3,
+    userPosition: 7,
+    selected: false,
+    sorted: false,
+  },
+];
 class InputBox extends Component {
   state = {
     errorsIndex: [0, 0, 0],
@@ -9,23 +61,16 @@ class InputBox extends Component {
       "the program only accepts numbers between 1-100",
     ],
     inputValue: "5, 1, 4, 2, 7, 6",
-    currinput: [5, 1, 4, 2, 7, 6, 3],
-    // userObj: [
-    //   { userInput: 5, sortPosiotion: 5, userPosition: 1, selected: false },
-    //   { userInput: 1, sortPosiotion: 1, userPosition: 2, selected: false },
-    //   { userInput: 4, sortPosiotion: 4, userPosition: 3, selected: false },
-    //   { userInput: 2, sortPosiotion: 2, userPosition: 4, selected: false },
-    //   { userInput: 7, sortPosiotion: 7, userPosition: 5, selected: false },
-    //   { userInput: 6, sortPosiotion: 6, userPosition: 6, selected: false },
-    //   { userInput: 3, sortPosiotion: 3, userPosition: 7, selected: false },
-    // ],
+    currentinput: [5, 1, 4, 2, 7, 6, 3],
     userInput_parseToInt: [5, 1, 4, 2, 7, 6, 3],
     isAnimating: false,
   };
 
   sortInput = (userObj, userInput_parseToInt) => {
+    console.log(userObj);
     let master = [];
     let stepsSchema = [];
+    let statusSchema = [""];
     let len = userInput_parseToInt.length;
     let swapped;
     let newUserObjectSetSwap = [...userObj];
@@ -39,35 +84,36 @@ class InputBox extends Component {
       // if after next round this stays false it means we have a sorted
       // array so we stop the process
       // newUserObjectSetSwap[newUserObjectSetSwap.length] = [2, 2, 1, 1, 1, 1, 1];
-      stepsSchema.push([2, 2, 1, 1, 1, 1, 1]);
+      stepsSchema.push([2, 2, 2, 1, 1, 1, 1]);
 
-      // console.log(newUserObjectSetSwap);
+      statusSchema.push(` Set the swapped flag to false. 
+      Then iterate from index 1 to ${len} inclusive.`);
+
       master.push(newUserObjectSetSwap);
       for (let i = 0; i < len - 1; i++) {
-        // newUserObjectSetSwap.algoDescription = 22;
-        // console.log(newUserObjectSetSwap);
-        // newUserObjectSetSwap[newUserObjectSetSwap.length] = [
-        //   2, 1, 2, 1, 1, 1, 1,
-        // ];
-        stepsSchema.push([2, 1, 2, 1, 1, 1, 1]);
+        stepsSchema.push([2, 1, 1, 2, 1, 1, 1]);
 
-        // console.log(newUserObjectSetSwap);
-        // master.push([...newUserObjectSetSwap]);
-        // master.push([...newUserObjectSetSwap]);
+        let statusTxt = () => {
+          return swapped
+            ? `Checking if ${newUserObjectSetSwap[i].userInput} > ${
+                newUserObjectSetSwap[i + 1].userInput
+              } and swap them if that is true.
+          The current value of swapped = true.`
+            : `Checking if ${newUserObjectSetSwap[i].userInput} > ${
+                newUserObjectSetSwap[i + 1].userInput
+              } and swap them if that is true.
+          The current value of swapped = false.`;
+        };
+
+        statusSchema.push(statusTxt());
         let num1 = { ...newUserObjectSetSwap[i] };
         let num2 = { ...newUserObjectSetSwap[i + 1] };
         num1.selected = true;
         num2.selected = true;
 
-        // console.log(num1);
-        // i == 0 && console.log(userObj);
-        // console.log(newUserObjectSetSwap);
-        // master.push([...newUserObjectSetSwap]);
         let onjr = [...newUserObjectSetSwap];
         onjr[i] = num1;
         onjr[i + 1] = num2;
-        // userObj[i + 1].selected = true;
-        // console.log("iser", userObj[i]);
         master.push(onjr);
         //selected num1 and two / swaps if b is greater than a
 
@@ -75,16 +121,13 @@ class InputBox extends Component {
           newUserObjectSetSwap[i].userInput >
           newUserObjectSetSwap[i + 1].userInput
         ) {
-          // num1.selected = false;
-          // num2.selected = false;
-          // onjr[onjr.length] = [2, 1, 1, 2, 2, 1, 1];
-          stepsSchema.push([2, 1, 1, 2, 2, 1, 1]);
+          stepsSchema.push([2, 1, 1, 1, 2, 2, 1]);
+          statusSchema.push();
 
           let orj2 = [...onjr];
           orj2[i] = num2;
           orj2[i + 1] = num1;
           master.push(orj2);
-          // console.log(master);
 
           let orj3 = [...orj2];
           let num11 = { ...orj3[i] };
@@ -94,50 +137,50 @@ class InputBox extends Component {
 
           orj3[i] = num11;
           orj3[i + 1] = num12;
-          // orj3[orj3.length] = [2, 1, 1, 1, 1, 2, 1];
-          stepsSchema.push([2, 1, 1, 1, 1, 2, 1]);
 
-          // console.log(orj3);
-          master.push(orj3);
-          // console.log(master);
+          // stepsSchema.push([2, 1, 1, 1, 1, 2, 1]);
+          statusSchema.push(
+            `      Swapping the positions of ${
+              newUserObjectSetSwap[i].userInput
+            } and ${newUserObjectSetSwap[i + 1].userInput}.
+            Set swapped = true.`
+          );
+
+          // master.push(orj3);
           newUserObjectSetSwap = [...orj3];
 
-          // console.log("temp", userObj);
-          // userObj[i].selected = false;
-          // userObj[i + 1].selected = false;
-          // master.push([...userObj]);
-          // console.log("master", master);
-
-          // master.push(userObj);
-
-          // userObj[i].selected = false;
-          // userObj[i + 1].selected = false;
-          // master.push([...userObj]);
           swapped = true;
-
-          // this.props.handleinpittt(newInput);
-          // this.setState({ userInputs: newInput });
         }
       }
+
+      master[master.length - 1][len - 1].sorted = true;
+      master.push(master[master.length - 1]);
+      // console.log(master[master.length - 1][len - 1].userInput);
+      let statusTxt = () => {
+        return swapped
+          ? `Mark this element as sorted now.
+          As at least one swap is done in this pass, we continue.`
+          : `No swap is done in this pass.
+          We can terminate Bubble Sort now`;
+      };
+      stepsSchema.push([2, 1, 1, 1, 1, 1, 2]);
+      statusSchema.push(statusTxt());
       len = len - 1;
     } while (swapped);
-    // console.log(stepsSchema);
-    this.props.tesstjamd(master, stepsSchema);
+    // console.log();
+    master[master.length - 1][len - 1].selected = false;
+    master[master.length - 1][len].selected = false;
+    master.push(master[master.length - 1]);
+
+    statusSchema.push("List is sorted");
+    stepsSchema.push([1, 1, 1, 1, 1, 1, 1]);
+    this.props.tesstjamd(master, stepsSchema, statusSchema);
   };
 
   componentDidMount() {
     this.handlesortt(
-      [5, 1, 4, 2, 7, 6, 3],
-      [
-        { userInput: 5, sortPosiotion: 5, userPosition: 1, selected: false },
-        { userInput: 1, sortPosiotion: 1, userPosition: 2, selected: false },
-        { userInput: 4, sortPosiotion: 4, userPosition: 3, selected: false },
-        { userInput: 2, sortPosiotion: 2, userPosition: 4, selected: false },
-        { userInput: 7, sortPosiotion: 7, userPosition: 5, selected: false },
-        { userInput: 6, sortPosiotion: 6, userPosition: 6, selected: false },
-        { userInput: 3, sortPosiotion: 3, userPosition: 7, selected: false },
-      ],
-      [5, 1, 4, 2, 7, 6, 3]
+      this.state.userInput_parseToInt,
+      initial_user_input_object
     );
   }
   handleInputs = (e) => {
@@ -200,6 +243,7 @@ class InputBox extends Component {
             sortPosiotion: sortedInput.indexOf(s) + 1,
             userPosition: userInput_parseToInt.indexOf(s) + 1,
             selected: false,
+            sorted: false,
           };
         });
         let sortedObj = sortedInput.map((s) => {
@@ -227,14 +271,18 @@ class InputBox extends Component {
     }
   };
 
-  handlesortt = (currinput, userObj, varr) => {
-    if (currinput.length > 0) {
+  handlesortt = (current_input, user_input_object) => {
+    // makes sure the user has valid input(set of numbers) to sort
+    if (current_input.length > 0) {
       // console.log(currinput);
       // console.log(userObj);
       // console.log(userInput_parseToInt);
 
-      this.sortInput(userObj, varr);
+      this.sortInput(user_input_object, current_input);
       this.setState({ isAnimating: true });
+    } else {
+      //TODO
+      console.log("please provide a set of numbers");
     }
   };
 
