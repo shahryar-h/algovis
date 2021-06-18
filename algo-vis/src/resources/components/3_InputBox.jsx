@@ -209,6 +209,52 @@ class InputBox extends Component {
     }
     return false;
   };
+  check_numeric = (userInput_comma_seperated) => {
+    let userInput_joinedSrting = userInput_comma_seperated.join("");
+    console.log(userInput_joinedSrting);
+    // validations
+    let isnum = /^\d+$/.test(userInput_joinedSrting);
+    if (isnum === false) {
+      this.setState({
+        errorsIndex: [1, ..._.slice(this.state.errorsIndex, 1)],
+      });
+      return true;
+    }
+    // let newstate = [0, ..._.slice(this.state.errorsIndex, 1)];
+    // console.log(newstate, "newstatenewstatenewstatenewstatenewstatenewstate");
+
+    this.setState({
+      errorsIndex: [0, ..._.slice(this.state.errorsIndex, 1)],
+    });
+    return !isnum;
+  };
+
+  pasre_to_array_of_Integers = (userInput_comma_seperated) => {
+    return userInput_comma_seperated.map((num) => {
+      return parseInt(num);
+    });
+  };
+  validate_user_input_length = (user_input_parse_to_array_of_Integers) => {
+    if (user_input_parse_to_array_of_Integers.length > 7) {
+      this.setState({
+        errorsIndex: [
+          ..._.slice(this.state.errorsIndex, 0, 1),
+          1,
+          ..._.slice(this.state.errorsIndex, 2),
+        ],
+      });
+      return true;
+    } else {
+      this.setState({
+        errorsIndex: [
+          ..._.slice(this.state.errorsIndex, 0, 1),
+          0,
+          ..._.slice(this.state.errorsIndex, 2),
+        ],
+      });
+      return false;
+    }
+  };
 
   handleInputs = (e) => {
     // destructuring
@@ -219,83 +265,76 @@ class InputBox extends Component {
     // .. for the error value.
 
     let updatedErrorsIndex = [...errorsIndex];
-    let userInput_parseToInt;
+    let user_input_parse_to_array_of_Integers;
 
     let userInput = e.target.value;
     this.setState({ inputValue: userInput });
-
+    // case empty user input
     if (this.blank_user_input(userInput)) return;
-
+    // removes ,, situations
     let userInput_comma_seperated = userInput.split(",").filter((num) => {
       return num != "";
     });
+    // case all user inputs are nums comma seperated:
 
-    let userInput_joinedSrting = userInput_comma_seperated.join("");
-    console.log(userInput_joinedSrting);
-    // validations
-    let isnum = /^\d+$/.test(userInput_joinedSrting);
-    if (isnum) {
-      updatedErrorsIndex[0] = 0;
-      userInput_parseToInt = userInput_comma_seperated.map((num) => {
-        return parseInt(num);
-      });
-      if (userInput_parseToInt.length > 7) {
-        updatedErrorsIndex[1] = 1;
-      } else {
-        updatedErrorsIndex[1] = 0;
+    if (this.check_numeric(userInput_comma_seperated)) return;
 
-        let result = userInput_parseToInt.every(function (e) {
-          return e < 100;
-        });
+    // updatedErrorsIndex[0] = 0;
+    user_input_parse_to_array_of_Integers = this.pasre_to_array_of_Integers(
+      userInput_comma_seperated
+    );
+    if (this.validate_user_input_length(user_input_parse_to_array_of_Integers))
+      return;
 
-        if (!result) {
-          updatedErrorsIndex[2] = 1;
-        } else {
-          updatedErrorsIndex[2] = 0;
-        }
-      }
-      this.setState({ errorsIndex: updatedErrorsIndex });
-    } else {
-      let updatedErrorsIndex = [...errorsIndex];
-      updatedErrorsIndex[0] = 1;
-      this.setState({ errorsIndex: updatedErrorsIndex });
-    }
-    if (!updatedErrorsIndex.includes(1) && userInput_parseToInt != undefined) {
-      let inp = [...userInput_parseToInt];
-      let sortedInput = inp.sort((a, b) => {
-        return a - b;
-      });
-      let userObj = userInput_parseToInt.map((s) => {
-        return {
-          userInput: s,
-          sortPosiotion: sortedInput.indexOf(s) + 1,
-          userPosition: userInput_parseToInt.indexOf(s) + 1,
-          selected: false,
-          sorted: false,
-        };
-      });
-      let sortedObj = sortedInput.map((s) => {
-        return {
-          userInput: s,
-          sortPosiotion: sortedInput.indexOf(s) + 1,
-          userPosition: userInput_parseToInt.indexOf(s) + 1,
-        };
-      });
+    let result = user_input_parse_to_array_of_Integers.every(function (e) {
+      return e < 100;
+    });
 
-      this.setState({ currinput: userInput, userObj, userInput_parseToInt });
+    console.log(result);
+    //   if (!result) {
+    //     updatedErrorsIndex[2] = 1;
+    //   } else {
+    //     updatedErrorsIndex[2] = 0;
+    //   }
+    // }
+    // this.setState({ errorsIndex: updatedErrorsIndex });
 
-      // this.sortInput(userObj, userInput_parseToInt);
+    // if (!updatedErrorsIndex.includes(1) && userInput_parseToInt != undefined) {
+    //   let inp = [...userInput_parseToInt];
+    //   let sortedInput = inp.sort((a, b) => {
+    //     return a - b;
+    //   });
+    //   let userObj = userInput_parseToInt.map((s) => {
+    //     return {
+    //       userInput: s,
+    //       sortPosiotion: sortedInput.indexOf(s) + 1,
+    //       userPosition: userInput_parseToInt.indexOf(s) + 1,
+    //       selected: false,
+    //       sorted: false,
+    //     };
+    //   });
+    //   let sortedObj = sortedInput.map((s) => {
+    //     return {
+    //       userInput: s,
+    //       sortPosiotion: sortedInput.indexOf(s) + 1,
+    //       userPosition: userInput_parseToInt.indexOf(s) + 1,
+    //     };
+    //   });
 
-      // console.log("master", master);
-      // console.log("master", master);
-      // console.log(userObj);
-      // this.props.handleUsersInput(
-      //   userObj,
-      //   sortedObj,
-      //   userInput_parseToInt,
-      //   sortedInput
-      // );
-    }
+    // this.setState({ currinput: userInput, userObj, userInput_parseToInt });
+
+    // this.sortInput(userObj, userInput_parseToInt);
+
+    // console.log("master", master);
+    // console.log("master", master);
+    // console.log(userObj);
+    // this.props.handleUsersInput(
+    //   userObj,
+    //   sortedObj,
+    //   userInput_parseToInt,
+    //   sortedInput
+    // );
+    // }
   };
 
   handlesortt = (current_input = [], user_input_object) => {
