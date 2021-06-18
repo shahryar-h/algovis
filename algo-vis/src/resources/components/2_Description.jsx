@@ -1,10 +1,15 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
+const Rest = styled.div`
+  height: 80vh;
+  /* background-color: brown; */
+`;
 class Description extends Component {
   render() {
     return (
       <div>
-        <h1>Description</h1>
+        <Rest>Description</Rest>
       </div>
     );
   }

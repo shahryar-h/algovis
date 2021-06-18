@@ -62,7 +62,7 @@ class InputBox extends Component {
       "the program only accepts numbers between 1-100",
       "Please provide a set of numbers or select the default values",
     ],
-    inputValue: "5, 1, 4, 2, 7, 6",
+    inputValue: "5,1,4,2,7,6",
     currentinput: [5, 1, 4, 2, 7, 6, 3],
     userInput_parseToInt: [5, 1, 4, 2, 7, 6, 3],
     isAnimating: false,
@@ -225,80 +225,76 @@ class InputBox extends Component {
     this.setState({ inputValue: userInput });
 
     if (this.blank_user_input(userInput)) return;
-    else {
-      let userInput_commaSeperated = userInput.split(",").filter((num) => {
-        return num != "";
+
+    let userInput_comma_seperated = userInput.split(",").filter((num) => {
+      return num != "";
+    });
+
+    let userInput_joinedSrting = userInput_comma_seperated.join("");
+    console.log(userInput_joinedSrting);
+    // validations
+    let isnum = /^\d+$/.test(userInput_joinedSrting);
+    if (isnum) {
+      updatedErrorsIndex[0] = 0;
+      userInput_parseToInt = userInput_comma_seperated.map((num) => {
+        return parseInt(num);
+      });
+      if (userInput_parseToInt.length > 7) {
+        updatedErrorsIndex[1] = 1;
+      } else {
+        updatedErrorsIndex[1] = 0;
+
+        let result = userInput_parseToInt.every(function (e) {
+          return e < 100;
+        });
+
+        if (!result) {
+          updatedErrorsIndex[2] = 1;
+        } else {
+          updatedErrorsIndex[2] = 0;
+        }
+      }
+      this.setState({ errorsIndex: updatedErrorsIndex });
+    } else {
+      let updatedErrorsIndex = [...errorsIndex];
+      updatedErrorsIndex[0] = 1;
+      this.setState({ errorsIndex: updatedErrorsIndex });
+    }
+    if (!updatedErrorsIndex.includes(1) && userInput_parseToInt != undefined) {
+      let inp = [...userInput_parseToInt];
+      let sortedInput = inp.sort((a, b) => {
+        return a - b;
+      });
+      let userObj = userInput_parseToInt.map((s) => {
+        return {
+          userInput: s,
+          sortPosiotion: sortedInput.indexOf(s) + 1,
+          userPosition: userInput_parseToInt.indexOf(s) + 1,
+          selected: false,
+          sorted: false,
+        };
+      });
+      let sortedObj = sortedInput.map((s) => {
+        return {
+          userInput: s,
+          sortPosiotion: sortedInput.indexOf(s) + 1,
+          userPosition: userInput_parseToInt.indexOf(s) + 1,
+        };
       });
 
-      let userInput_joinedSrting = userInput_commaSeperated.join("");
+      this.setState({ currinput: userInput, userObj, userInput_parseToInt });
 
-      // validations
-      let isnum = /^\d+$/.test(userInput_joinedSrting);
-      if (isnum) {
-        updatedErrorsIndex[0] = 0;
-        userInput_parseToInt = userInput_commaSeperated.map((num) => {
-          return parseInt(num);
-        });
-        if (userInput_parseToInt.length > 7) {
-          updatedErrorsIndex[1] = 1;
-        } else {
-          updatedErrorsIndex[1] = 0;
+      // this.sortInput(userObj, userInput_parseToInt);
 
-          let result = userInput_parseToInt.every(function (e) {
-            return e < 100;
-          });
-
-          if (!result) {
-            updatedErrorsIndex[2] = 1;
-          } else {
-            updatedErrorsIndex[2] = 0;
-          }
-        }
-        this.setState({ errorsIndex: updatedErrorsIndex });
-      } else {
-        let updatedErrorsIndex = [...errorsIndex];
-        updatedErrorsIndex[0] = 1;
-        this.setState({ errorsIndex: updatedErrorsIndex });
-      }
-      if (
-        !updatedErrorsIndex.includes(1) &&
-        userInput_parseToInt != undefined
-      ) {
-        let inp = [...userInput_parseToInt];
-        let sortedInput = inp.sort((a, b) => {
-          return a - b;
-        });
-        let userObj = userInput_parseToInt.map((s) => {
-          return {
-            userInput: s,
-            sortPosiotion: sortedInput.indexOf(s) + 1,
-            userPosition: userInput_parseToInt.indexOf(s) + 1,
-            selected: false,
-            sorted: false,
-          };
-        });
-        let sortedObj = sortedInput.map((s) => {
-          return {
-            userInput: s,
-            sortPosiotion: sortedInput.indexOf(s) + 1,
-            userPosition: userInput_parseToInt.indexOf(s) + 1,
-          };
-        });
-
-        this.setState({ currinput: userInput, userObj, userInput_parseToInt });
-
-        // this.sortInput(userObj, userInput_parseToInt);
-
-        // console.log("master", master);
-        // console.log("master", master);
-        // console.log(userObj);
-        // this.props.handleUsersInput(
-        //   userObj,
-        //   sortedObj,
-        //   userInput_parseToInt,
-        //   sortedInput
-        // );
-      }
+      // console.log("master", master);
+      // console.log("master", master);
+      // console.log(userObj);
+      // this.props.handleUsersInput(
+      //   userObj,
+      //   sortedObj,
+      //   userInput_parseToInt,
+      //   sortedInput
+      // );
     }
   };
 

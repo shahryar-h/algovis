@@ -262,6 +262,7 @@ class Diagram extends Component {
               }
             >
               {item.userInput}
+              {console.log(item)} {}
               {/* {console.log()} */}
             </div>
           ))}
