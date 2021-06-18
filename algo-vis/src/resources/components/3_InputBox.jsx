@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import "../styles/inputBox.sass";
 
 const initial_user_input_object = [
@@ -54,11 +55,12 @@ const initial_user_input_object = [
 ];
 class InputBox extends Component {
   state = {
-    errorsIndex: [0, 0, 0],
+    errorsIndex: [0, 0, 0, 0],
     errors: [
       "the program accepts only number values comma seperated",
       "the program only accepts up to 7 numbers",
       "the program only accepts numbers between 1-100",
+      "Please provide a set of numbers or select the default values",
     ],
     inputValue: "5, 1, 4, 2, 7, 6",
     currentinput: [5, 1, 4, 2, 7, 6, 3],
@@ -183,18 +185,47 @@ class InputBox extends Component {
       initial_user_input_object
     );
   }
+  // on change
+  // validates user input
+  // // comma seperated
+  // // numbers
+  // // between 0 and 100
+  // // not empty
+
+  // creates user object (the input for sort algorithm)
+
+  // returns false if there is a user input
+  // if no user input
+  // // updates the state with current input and error index
+  // // sends a hanleUsersInput with blank arguments
+  blank_user_input = (userInput) => {
+    if (userInput === "") {
+      // this.props.handleUsersInput([], [], [], []);
+      this.setState({
+        currinput: [],
+        errorsIndex: [..._.initial(this.state.errorsIndex), 1],
+      });
+      return true;
+    }
+    return false;
+  };
+
   handleInputs = (e) => {
+    // destructuring
     const { errorsIndex } = this.state;
+
+    // error index indicates the type of validation error to show to the user
+    // ex: [0,1,0] means we have an error and it is in index 1 and check our dictionary
+    // .. for the error value.
 
     let updatedErrorsIndex = [...errorsIndex];
     let userInput_parseToInt;
 
     let userInput = e.target.value;
     this.setState({ inputValue: userInput });
-    if (userInput === "") {
-      this.props.handleUsersInput([], [], [], []);
-      this.setState({ currinput: [] });
-    } else {
+
+    if (this.blank_user_input(userInput)) return;
+    else {
       let userInput_commaSeperated = userInput.split(",").filter((num) => {
         return num != "";
       });
@@ -271,7 +302,7 @@ class InputBox extends Component {
     }
   };
 
-  handlesortt = (current_input, user_input_object) => {
+  handlesortt = (current_input = [], user_input_object) => {
     // makes sure the user has valid input(set of numbers) to sort
     if (current_input.length > 0) {
       // console.log(currinput);
@@ -300,6 +331,7 @@ class InputBox extends Component {
       inputValue,
     } = this.state;
 
+    console.log(errorsIndex);
     return (
       <div className="inputSection">
         <input
