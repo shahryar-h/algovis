@@ -6,7 +6,7 @@ const Buttons = [
   { class: "prev", func_arg: "prev", button_text: "P" },
   { class: "playPause", func_arg: "playPause", button_text: "Play" },
   { class: "next", func_arg: "next", button_text: "N" },
-  { class: "sortEnd", func_arg: "sortEnd", button_text: "E" },
+  { class: "sortEnd", func_arg: "end", button_text: "E" },
 ];
 export default class ControlButtons extends Component {
   render() {

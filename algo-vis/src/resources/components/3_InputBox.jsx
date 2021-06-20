@@ -141,7 +141,7 @@ class InputBox extends Component {
   }
   // on change
   // validates user input
-  // // comma seperated
+  // // comma separated
   // // numbers
   // // between 0 and 100
   // // not empty

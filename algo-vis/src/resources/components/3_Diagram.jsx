@@ -1,123 +1,27 @@
-/* eslint-disable react/jsx-indent */
 import React, { Component } from "react";
 import ControlButtons from "./3_ControlButtons";
 import Steps from "./3_Steps";
 
-// eslint-disable-next-line react/prefer-stateless-function
-let sortedSample = [
-  {
-    userInput: 1,
-    sortPosiotion: 1,
-    userPosition: 2,
-  },
-  {
-    userInput: 2,
-    sortPosiotion: 2,
-    userPosition: 4,
-  },
-  {
-    userInput: 3,
-    sortPosiotion: 3,
-    userPosition: 7,
-  },
-  {
-    userInput: 4,
-    sortPosiotion: 4,
-    userPosition: 3,
-  },
-  {
-    userInput: 5,
-    sortPosiotion: 5,
-    userPosition: 1,
-  },
-  {
-    userInput: 6,
-    sortPosiotion: 6,
-    userPosition: 6,
-  },
-  {
-    userInput: 7,
-    sortPosiotion: 7,
-    userPosition: 5,
-  },
-];
-let sample = [
-  {
-    userInput: 5,
-    sortPosiotion: 5,
-    userPosition: 1,
-  },
-  {
-    userInput: 1,
-    sortPosiotion: 1,
-    userPosition: 2,
-  },
-  {
-    userInput: 4,
-    sortPosiotion: 4,
-    userPosition: 3,
-  },
-  {
-    userInput: 2,
-    sortPosiotion: 2,
-    userPosition: 4,
-  },
-  {
-    userInput: 7,
-    sortPosiotion: 7,
-    userPosition: 5,
-  },
-  {
-    userInput: 6,
-    sortPosiotion: 6,
-    userPosition: 6,
-  },
-  {
-    userInput: 3,
-    sortPosiotion: 3,
-    userPosition: 7,
-  },
-];
 class Diagram extends Component {
   state = {
     counter: 0,
     play: false,
-    // userInputs: [5, 1, 4, 2, 7, 6, 3],
-    // userObj: sample,
-    // userInputs: ,
-    // userObj: this.props.userObj,
-    // sortedInput: this.props.sortedInput,
-    // sortedObj: this.props.sortedObj,
   };
-  // componentDidMount = () => {
-  //   console.log(this.props);
-  //   this.setState({
-  //     userInputs: this.props.userInputs,
-  //     userObj: this.props.userObj,
-  //   });
-  // };
-
   increment = () => {
-    const { counter, play } = this.state;
+    const { counter } = this.state;
 
-    // console.log(counter, play);
-    if (this.state.counter + 1 <= this.props.main_schema.length - 1) {
+    if (counter + 1 <= this.props.main_schema.length - 1) {
       this.setState({ counter: this.state.counter + 1 });
-
-      console.log("heloooooo");
     } else {
       clearInterval(this.interval);
       return;
     }
   };
   decrement = () => {
-    const { counter, play } = this.state;
+    const { counter } = this.state;
 
-    console.log(counter, play);
-    if (this.state.counter - 1 >= 0) {
-      this.setState({ counter: this.state.counter - 1 });
-
-      console.log("heloooooo");
+    if (counter - 1 >= 0) {
+      this.setState({ counter: counter - 1 });
     } else {
       clearInterval(this.interval);
       return;
@@ -126,14 +30,12 @@ class Diagram extends Component {
 
   handle_control_buttons = (e) => {
     const { counter, play } = this.state;
-    console.log(counter);
     if (e == "next") {
       if (counter + 1 <= this.props.main_schema.length - 1) {
-        this.setState({ counter: this.state.counter + 1 });
+        this.setState({ counter: counter + 1 });
       }
     }
     if (e == "playPause") {
-      console.log(play);
       if (play) {
         this.setState({ play: !this.state.play });
         clearInterval(this.interval);
@@ -142,38 +44,13 @@ class Diagram extends Component {
         if (counter <= this.props.main_schema.length - 1) {
           this.interval = setInterval(
             this.decrement,
-            // () =>
-            //   this.setState({
-            //     counter:
-            //       this.state.counter + 1 <= this.props.main_schema.length - 1 &&
-            //       this.state.counter + 1,
-            //   }),
-            30
+
+            1000
           );
         }
       }
     }
-    if (e == "sss") {
-      console.log(play);
-      if (play) {
-        this.setState({ play: !this.state.play });
-        clearInterval(this.interval);
-      } else {
-        this.setState({ play: !this.state.play });
-        if (counter <= this.props.main_schema.length - 1) {
-          this.interval = setInterval(
-            this.decrement,
-            // () =>
-            //   this.setState({
-            //     counter:
-            //       this.state.counter + 1 <= this.props.main_schema.length - 1 &&
-            //       this.state.counter + 1,
-            //   }),
-            30
-          );
-        }
-      }
-    }
+
     if (e == "prev") {
       if (counter - 1 >= 0) {
         this.setState({ counter: this.state.counter - 1 });
@@ -187,36 +64,21 @@ class Diagram extends Component {
     }
   };
   render() {
-    // const { sortedObj } = this.state;
     const {
-      sorted,
-      sortedObj,
-      userInputs,
-      userObj,
       main_schema = [],
       stepsSchema = [],
       statusSchema = [],
     } = this.props;
 
-    // const {} = this.state;
-
-    // const userOBJ = userObj?.length < 1 ? sample : userObj;
-    // const sortedOBJ = sortedObj.length < 1 ? sortedSample : sortedObj;
-    // console.log("userInputs", userInputs);
-
-    // let nimm = userInputs?.map((inp) => {
-    //   return sortedSample.filter((sorted) => {
-    //     return sorted.userInput == inp;
-    //   })[0];
-    // });
+    const { counter } = this.state;
     return (
       <>
         <Steps
-          schema={stepsSchema[this.state.counter]}
-          statusSchema={statusSchema[this.state.counter]}
+          schema={stepsSchema[counter]}
+          statusSchema={statusSchema[counter]}
         />
         <div className="sortItems">
-          {main_schema[this.state.counter]?.map((item, index) => (
+          {main_schema[counter]?.map((item, index) => (
             <div
               key={`itemBox-${item.sortPosiotion}-${index}`}
               className={
@@ -226,27 +88,8 @@ class Diagram extends Component {
               }
             >
               {item.userInput}
-              {console.log(item)} {}
-              {/* {console.log()} */}
             </div>
           ))}
-          {/* {!sorted
-            ? userOBJ?.map((item, index) => (
-                <div
-                  key={`itemBox-${item.sortPosiotion}-${index}`}
-                  className={`sortItem sortItem${item.sortPosiotion}`}
-                >
-                  {item.userInput}
-                </div>
-              ))
-            : sortedObj.map((item, index) => (
-                <div
-                  key={`itemBox-${item.sortPosiotion}-${index}`}
-                  className={`sortItem sortItem${item.sortPosiotion}`}
-                >
-                  {item.userInput}
-                </div>
-              ))} */}
         </div>
         <ControlButtons
           handle_control_buttons={(e) => this.handle_control_buttons(e)}
