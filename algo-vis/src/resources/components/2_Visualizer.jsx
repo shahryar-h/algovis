@@ -77,7 +77,7 @@ class Visualizer extends Component {
 
     this.setState({ userObj: nimm, userInputs: e });
   };
-  tesstjamd = (schm, stepsSchema, statusSchema) => {
+  handel_schemas = (schm, stepsSchema, statusSchema) => {
     this.setState({ schm, stepsSchema, statusSchema });
   };
   render() {
@@ -109,8 +109,8 @@ class Visualizer extends Component {
           handleUsersInput={(userObj, sortedObj, userInputs, sortedInput) =>
             this.handleUsersInput(userObj, sortedObj, userInputs, sortedInput)
           }
-          tesstjamd={(schema, stepsSchema, statusSchema) =>
-            this.tesstjamd(schema, stepsSchema, statusSchema)
+          handel_schemas={(schema, stepsSchema, statusSchema) =>
+            this.handel_schemas(schema, stepsSchema, statusSchema)
           }
         />
       </div>
