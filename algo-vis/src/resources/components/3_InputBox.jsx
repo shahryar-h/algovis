@@ -1,58 +1,9 @@
 import React, { Component } from "react";
 import _ from "lodash";
+import Joi from "joi";
+import { initial_user_input_object } from "../constants/inputBox.constants";
 import "../styles/inputBox.sass";
 
-const initial_user_input_object = [
-  {
-    userInput: 5,
-    sortPosiotion: 5,
-    userPosition: 1,
-    selected: false,
-    sorted: false,
-  },
-  {
-    userInput: 1,
-    sortPosiotion: 1,
-    userPosition: 2,
-    selected: false,
-    sorted: false,
-  },
-  {
-    userInput: 4,
-    sortPosiotion: 4,
-    userPosition: 3,
-    selected: false,
-    sorted: false,
-  },
-  {
-    userInput: 2,
-    sortPosiotion: 2,
-    userPosition: 4,
-    selected: false,
-    sorted: false,
-  },
-  {
-    userInput: 7,
-    sortPosiotion: 7,
-    userPosition: 5,
-    selected: false,
-    sorted: false,
-  },
-  {
-    userInput: 6,
-    sortPosiotion: 6,
-    userPosition: 6,
-    selected: false,
-    sorted: false,
-  },
-  {
-    userInput: 3,
-    sortPosiotion: 3,
-    userPosition: 7,
-    selected: false,
-    sorted: false,
-  },
-];
 class InputBox extends Component {
   state = {
     errorsIndex: [0, 0, 0, 0],
@@ -298,66 +249,55 @@ class InputBox extends Component {
     ];
   };
 
+  create_user_object = (user_input_parsed_to_array_of_Integers) => {
+    let sorted_user_input = _.sortBy(user_input_parsed_to_array_of_Integers);
+
+    let user_object = user_input_parsed_to_array_of_Integers.map((s) => {
+      return {
+        userInput: s,
+        sortPosiotion: sorted_user_input.indexOf(s) + 1,
+        userPosition: user_input_parsed_to_array_of_Integers.indexOf(s) + 1,
+        selected: false,
+        sorted: false,
+      };
+    });
+
+    return user_input_parsed_to_array_of_Integers, user_object;
+  };
+
   handleInputs = (e) => {
     // destructuring
     const { errorsIndex } = this.state;
-
     // error index indicates the type of validation error to show to the user
     // ex: [0,1,0] means we have an error and it is in index 1 and check our dictionary
     // .. for the error value.
-
-    // let user_input_parsed_to_array_of_Integers;
-
     let userInput = e.target.value;
     this.setState({ inputValue: userInput });
+
+    // validate function:
+    // //  returns true if there is an error with an empty array
+    // // return false if the input is ok with an array if user input parsed to integer
     const [validation, user_input_parsed_to_array_of_Integers] =
       this.validate_input(userInput);
     if (validation) return;
-    console.log(validation, "validation");
 
+    // we get here if the user input is valid
     if (user_input_parsed_to_array_of_Integers != undefined) {
-      console.log("DIs");
-      // let inp = [...userInput_parseToInt];
-      // let sortedInput = inp.sort((a, b) => {
-      //   return a - b;
-      // });
-      // let userObj = userInput_parseToInt.map((s) => {
-      //   return {
-      //     userInput: s,
-      //     sortPosiotion: sortedInput.indexOf(s) + 1,
-      //     userPosition: userInput_parseToInt.indexOf(s) + 1,
-      //     selected: false,
-      //     sorted: false,
-      //   };
-      // });
-      // let sortedObj = sortedInput.map((s) => {
-      //   return {
-      //     userInput: s,
-      //     sortPosiotion: sortedInput.indexOf(s) + 1,
-      //     userPosition: userInput_parseToInt.indexOf(s) + 1,
-      //   };
-      // });
-      // this.setState({ currinput: userInput, userObj, userInput_parseToInt });
-      // this.sortInput(userObj, userInput_parseToInt);
-      // console.log("master", master);
-      // console.log("master", master);
-      // console.log(userObj);
-      // this.props.handleUsersInput(
-      //   userObj,
-      //   sortedObj,
-      //   userInput_parseToInt,
-      //   sortedInput
-      // );
+      // creates user object and renames int array :-) !! finally
+      const [user_input_int, user_object] = this.create_user_object(
+        user_input_parsed_to_array_of_Integers
+      );
+      this.setState({
+        currinput: userInput,
+        user_object,
+        user_input_int,
+      });
     }
   };
 
   handlesortt = (current_input = [], user_input_object) => {
     // makes sure the user has valid input(set of numbers) to sort
     if (current_input.length > 0) {
-      // console.log(currinput);
-      // console.log(userObj);
-      // console.log(userInput_parseToInt);
-
       this.sortInput(user_input_object, current_input);
       this.setState({ isAnimating: true });
     } else {
