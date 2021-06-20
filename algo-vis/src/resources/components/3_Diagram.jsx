@@ -124,7 +124,7 @@ class Diagram extends Component {
     }
   };
 
-  handlebuttonss = (e) => {
+  handle_control_buttons = (e) => {
     const { counter, play } = this.state;
     console.log(counter);
     if (e == "next") {
@@ -248,7 +248,9 @@ class Diagram extends Component {
                 </div>
               ))} */}
         </div>
-        <ControlButtons handlebuttonss={(e) => this.handlebuttonss(e)} />
+        <ControlButtons
+          handle_control_buttons={(e) => this.handle_control_buttons(e)}
+        />
       </>
     );
   }
