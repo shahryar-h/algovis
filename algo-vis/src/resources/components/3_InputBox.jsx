@@ -1,21 +1,9 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import Joi from "joi";
 import { initial_user_input_object } from "../constants/inputBox.constants";
+import { user_input_validation_schema } from "../constants/validations";
 import "../styles/inputBox.sass";
-const validation_schema = Joi.required().string;
-const user_input_validation_schema = Joi.array()
-  .required()
-  .min(1)
-  .items(
-    Joi.object().keys({
-      userInput: Joi.number().required(),
-      sortPosiotion: Joi.number().required(),
-      userPosition: Joi.number().required(),
-      selected: Joi.boolean().required(),
-      sorted: Joi.boolean().required(),
-    })
-  );
+
 class InputBox extends Component {
   state = {
     errorsIndex: [0, 0, 0, 0],
