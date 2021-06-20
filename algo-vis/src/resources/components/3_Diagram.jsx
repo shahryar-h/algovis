@@ -96,48 +96,12 @@ class Diagram extends Component {
   //     userObj: this.props.userObj,
   //   });
   // };
-  handletest = () => {
-    // console.log("hello", this.props.userInputs);
-    let newInput = [...this.props.userInputs];
-    console.log("newInput", newInput);
-
-    let len = newInput.length;
-    let swapped;
-    do {
-      swapped = false;
-      for (let i = 0; i < len; i++) {
-        if (newInput[i] > newInput[i + 1]) {
-          let tmp = newInput[i];
-          newInput[i] = newInput[i + 1];
-          newInput[i + 1] = tmp;
-          this.props.handleinpittt(newInput);
-          // this.setState({ userInputs: newInput });
-          break;
-        }
-      }
-    } while (swapped);
-    // console.log(newInput);
-
-    //  return inputArr;
-    // let temp = newInput[3];
-    // newInput[3] = newInput[2];
-    // newInput[2] = temp;
-    // console.log(newInput);
-    // let nimm = newInput.map((inp) => {
-    //   return sortedSample.filter((sorted) => {
-    //     return sorted.userInput == inp;
-    //   })[0];
-    // });
-
-    // console.log("nimm", nimm);
-    // this.setState({ userObj: nimm, userInputs: newInput });
-  };
 
   increment = () => {
     const { counter, play } = this.state;
 
     // console.log(counter, play);
-    if (this.state.counter + 1 <= this.props.schm.length - 1) {
+    if (this.state.counter + 1 <= this.props.main_schema.length - 1) {
       this.setState({ counter: this.state.counter + 1 });
 
       console.log("heloooooo");
@@ -164,7 +128,7 @@ class Diagram extends Component {
     const { counter, play } = this.state;
     console.log(counter);
     if (e == "next") {
-      if (counter + 1 <= this.props.schm.length - 1) {
+      if (counter + 1 <= this.props.main_schema.length - 1) {
         this.setState({ counter: this.state.counter + 1 });
       }
     }
@@ -175,13 +139,13 @@ class Diagram extends Component {
         clearInterval(this.interval);
       } else {
         this.setState({ play: !this.state.play });
-        if (counter <= this.props.schm.length - 1) {
+        if (counter <= this.props.main_schema.length - 1) {
           this.interval = setInterval(
             this.decrement,
             // () =>
             //   this.setState({
             //     counter:
-            //       this.state.counter + 1 <= this.props.schm.length - 1 &&
+            //       this.state.counter + 1 <= this.props.main_schema.length - 1 &&
             //       this.state.counter + 1,
             //   }),
             30
@@ -196,13 +160,13 @@ class Diagram extends Component {
         clearInterval(this.interval);
       } else {
         this.setState({ play: !this.state.play });
-        if (counter <= this.props.schm.length - 1) {
+        if (counter <= this.props.main_schema.length - 1) {
           this.interval = setInterval(
             this.decrement,
             // () =>
             //   this.setState({
             //     counter:
-            //       this.state.counter + 1 <= this.props.schm.length - 1 &&
+            //       this.state.counter + 1 <= this.props.main_schema.length - 1 &&
             //       this.state.counter + 1,
             //   }),
             30
@@ -216,7 +180,7 @@ class Diagram extends Component {
       }
     }
     if (e == "end") {
-      this.setState({ counter: this.props.schm.length - 1 });
+      this.setState({ counter: this.props.main_schema.length - 1 });
     }
     if (e == "start") {
       this.setState({ counter: 0 });
@@ -229,7 +193,7 @@ class Diagram extends Component {
       sortedObj,
       userInputs,
       userObj,
-      schm = [],
+      main_schema = [],
       stepsSchema = [],
       statusSchema = [],
     } = this.props;
@@ -252,7 +216,7 @@ class Diagram extends Component {
           statusSchema={statusSchema[this.state.counter]}
         />
         <div className="sortItems">
-          {schm[this.state.counter]?.map((item, index) => (
+          {main_schema[this.state.counter]?.map((item, index) => (
             <div
               key={`itemBox-${item.sortPosiotion}-${index}`}
               className={
@@ -283,7 +247,6 @@ class Diagram extends Component {
                   {item.userInput}
                 </div>
               ))} */}
-          {/* <div onClick={() => this.handletest()}>test</div> */}
         </div>
         <ControlButtons handlebuttonss={(e) => this.handlebuttonss(e)} />
       </>

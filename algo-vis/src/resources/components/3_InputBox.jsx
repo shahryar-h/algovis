@@ -30,7 +30,7 @@ class InputBox extends Component {
     is_animating: false,
   };
 
-  sort_input = (user_input_object, userInput_parseToInt) => {
+  sort_input = (user_input_object = [], userInput_parseToInt = []) => {
     let master = [];
     let steps_schema = [];
     let status_schema = [""];
@@ -337,19 +337,25 @@ class InputBox extends Component {
           name="name"
           value={input_value}
           onChange={(e) => this.handleInputs(e)}
+          disabled={is_animating}
         />
         {is_animating ? (
           <div className="handlesort" onClick={(e) => this.handleAnotherSet(e)}>
-            An other set of Numbers
+            Another set of Numbers
           </div>
         ) : (
           <div
             className="handlesort"
-            onClick={(e) => this.handel_sort(user_object, user_input_int)}
+            onClick={() => this.handel_sort(user_object, user_input_int)}
           >
             Sort
           </div>
         )}
+        <div>
+          {errorsIndex.map((error, index) => {
+            return error === 1 && errors[index];
+          })}
+        </div>
       </div>
     );
   }
