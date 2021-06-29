@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import { initial_user_input_object } from "../constants/inputBox.constants";
-import { user_input_validation_schema } from "../constants/validations";
-import "../styles/inputBox.sass";
+import { initial_user_input_object } from "./inputBox.constants";
+import { user_input_validation_schema } from "./validations";
+import { Input, InputSection, SortButton } from "./inputBox.styles.js";
 
 class InputBox extends Component {
   state = {
@@ -142,7 +142,6 @@ class InputBox extends Component {
   // // sends a hanleUsersInput with blank arguments
   blank_user_input = (userInput) => {
     if (userInput.trim() === "") {
-      this.props.handleUsersInput([], [], [], []);
       this.setState({
         currinput: [],
         errorsIndex: [0, 0, 0, 1],
@@ -318,8 +317,8 @@ class InputBox extends Component {
     } = this.state;
 
     return (
-      <div className="inputSection">
-        <input
+      <InputSection>
+        <Input
           type="text"
           autoComplete="off"
           name="name"
@@ -328,23 +327,23 @@ class InputBox extends Component {
           disabled={is_animating}
         />
         {is_animating ? (
-          <div className="handlesort" onClick={(e) => this.handleAnotherSet(e)}>
+          <SortButton onClick={(e) => this.handleAnotherSet(e)}>
             Another set of Numbers
-          </div>
+          </SortButton>
         ) : (
-          <div
-            className="handlesort"
+          <SortButton
             onClick={() => this.handel_sort(user_object, user_input_int)}
           >
             Sort
-          </div>
+          </SortButton>
         )}
+        #f2ff3a
         <div>
           {errorsIndex.map((error, index) => {
             return error === 1 && errors[index];
           })}
         </div>
-      </div>
+      </InputSection>
     );
   }
 }

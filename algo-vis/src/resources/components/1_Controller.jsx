@@ -6,7 +6,7 @@ class Controller extends Component {
   render() {
     return (
       <div className="controllerContainer">
-        <section>
+        <section className="controlls">
           <Visualizer />
           <Description />
         </section>

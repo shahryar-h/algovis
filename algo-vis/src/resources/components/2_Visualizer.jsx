@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Diagram from "./3_Diagram";
-import InputBox from "./3_InputBox";
+import InputBox from "./3_inputBox/inputBox.component";
 
 class Visualizer extends Component {
   state = {};
