@@ -51,3 +51,8 @@ export const SortButton = styled.div`
     box-shadow: 5px 5px 13px #095168, -5px -5px 13px #1191b8;
   }
 `;
+
+export const FieldError = styled.div`
+  min-height: 1em;
+  color: #f2ff3a;
+`;

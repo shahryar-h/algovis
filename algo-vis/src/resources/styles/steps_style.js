@@ -13,11 +13,17 @@ export const AlgoSteps = styled.div`
 
 export const Status = styled.div`
   padding: 15px;
+  min-height: 3em;
   ${baseStyle}
 `;
 
 export const SudoStep = styled(Status)`
   padding: 0px;
-  background: ${(props) => (props.selected ? "burlywood" : "")};
+  background: ${(props) => (props.selected ? "" : "")};
+  min-height: 0em;
 `;
-export const SudoStepContainer = styled.div``;
+export const SudoStepContainer = styled.div`
+  letter-spacing: 0.1em;
+  /* line-height: 2em; */
+  /* font-size: 1.14em; */
+`;

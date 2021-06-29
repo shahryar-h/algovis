@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import _ from "lodash";
 import { initial_user_input_object } from "./inputBox.constants";
 import { user_input_validation_schema } from "./validations";
-import { Input, InputSection, SortButton } from "./inputBox.styles.js";
+import {
+  Input,
+  InputSection,
+  SortButton,
+  FieldError,
+} from "./inputBox.styles.js";
 
 class InputBox extends Component {
   state = {
@@ -337,12 +342,12 @@ class InputBox extends Component {
             Sort
           </SortButton>
         )}
-        #f2ff3a
-        <div>
+
+        <FieldError>
           {errorsIndex.map((error, index) => {
             return error === 1 && errors[index];
           })}
-        </div>
+        </FieldError>
       </InputSection>
     );
   }
