@@ -19,6 +19,7 @@ class Visualizer extends Component {
             statusSchema,
           }}
         />
+
         <InputBox
           handel_schemas={(schema, stepsSchema, statusSchema) =>
             this.handel_schemas(schema, stepsSchema, statusSchema)
