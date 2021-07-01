@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import BubbleSort from "./components/0_bubbleSort/1_bubbleSort.cpmponent";
+import BubbleSort from "./components/1_bubbleSort/1_bubbleSort.cpmponent";
 
 import "./main.sass";
 

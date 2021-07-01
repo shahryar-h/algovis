@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Description from "../1_description/2_Description";
-import Visualization from "../1_visualization/1_visualization.component";
+import Description from "./2_description/2_Description";
+import Visualization from "./2_visualization/2_visualization.component";
 import styled from "styled-components";
 
 // .controllerContainer

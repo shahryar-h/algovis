@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../../styles/controlButoons.sass";
+import "./controlButoons.sass";
 
 const Buttons = [
   { class: "sortStart", func_arg: "start", button_text: "S" },
