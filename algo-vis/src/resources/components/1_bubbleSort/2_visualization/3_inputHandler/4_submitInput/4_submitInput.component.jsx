@@ -1,13 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setMainSchema } from "../../../../../../redux/main-schema/mainSchema.actions";
+import { toggleAnimate } from "../../../../../../redux/main-schema/mainSchema.actions";
 import { setStepsSchema } from "../../../../../../redux/steps/steps.actions";
 import { setStatusSchema } from "../../../../../../redux/status/status.actions";
+
 import _ from "lodash";
 import styled from "styled-components";
 
 // TODO: make this a button
-export const SortButton = styled.div`
+export const SortButton = styled.input.attrs({
+  type: "submit",
+})`
   width: 50%;
   border-radius: 50px;
   background: red;
@@ -32,6 +36,9 @@ const SubmitInput = ({
   setMainSchema,
   setStepsSchema,
   setStatusSchema,
+  errorList,
+  isAnimating,
+  toggleAnimate,
 }) => {
   const create_user_object = (inputList) => {
     let sorted_user_input = _.sortBy(inputList);
@@ -153,17 +160,21 @@ const SubmitInput = ({
     setMainSchema(master);
     setStepsSchema(steps_schema);
     setStatusSchema(status_schema);
+    toggleAnimate();
+  };
+  const handleAnotherSet = () => {
+    toggleAnimate();
   };
   return (
     <>
-      {is_animating ? (
-        <SortButton
-        // onClick={(e) => this.handleAnotherSet(e)}
-        >
-          Another set of Numbers
-        </SortButton>
+      {isAnimating ? (
+        <SortButton value="amother set" onClick={(e) => handleAnotherSet(e)} />
       ) : (
-        <SortButton onClick={() => sort_input(inputList)}>Sort</SortButton>
+        <SortButton
+          disabled={errorList != ""}
+          onClick={() => sort_input(inputList)}
+          value="sort"
+        />
       )}
     </>
   );
@@ -173,6 +184,11 @@ const mapDispatchToProps = (dispatch) => ({
   setMainSchema: (mainSchema) => dispatch(setMainSchema(mainSchema)),
   setStepsSchema: (stepsSchema) => dispatch(setStepsSchema(stepsSchema)),
   setStatusSchema: (statusSchema) => dispatch(setStatusSchema(statusSchema)),
+  toggleAnimate: () => dispatch(toggleAnimate()),
 });
 
-export default connect(null, mapDispatchToProps)(SubmitInput);
+const mapStateToProps = (state) => ({
+  errorList: state.errorList.errorList,
+  isAnimating: state.mainSchema.isAnimating,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(SubmitInput);
