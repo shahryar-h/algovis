@@ -1,5 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default function DisplayError() {
-  return <div>here is an error</div>;
-}
+const DisplayError = ({ errorList }) => {
+  return <div>{errorList}</div>;
+};
+
+const mapStateToProps = (state) => ({
+  errorList: state.errorList.errorList,
+});
+
+export default connect(mapStateToProps)(DisplayError);

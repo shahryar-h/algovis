@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-
 import { connect } from "react-redux";
+
+import { setErrorList } from "../../../../../../redux/error-list/errorList.actions";
+
 import styled from "styled-components";
 const baseStyle = "margin: 0;";
 
@@ -23,17 +25,17 @@ export const Input = styled.input`
     outline: none;
   }
 `;
-const Box = ({ mainSchema }) => {
+const Box = ({ mainSchema, setErrorList }) => {
   const [userInput, setUserInput] = useState("5,2,7,1,4,6,3");
   // to go to redux
   const [errorsIndex, setErrorsIndex] = useState([0, 0, 0, 0]);
 
   const blank_user_input = (userInitialInput) => {
     if (userInitialInput.trim() === "") {
-      setErrorsIndex([0, 0, 0, 1]);
+      setErrorList(4);
       return true;
     } else {
-      setErrorsIndex([0, 0, 0, 0]);
+      setErrorList(0);
       return false;
     }
   };
@@ -43,10 +45,10 @@ const Box = ({ mainSchema }) => {
     // validations
     let isNumber = /^\d+$/.test(userInput_joinedString);
     if (isNumber === false) {
-      setErrorsIndex([1, 0, 0, 0]);
+      setErrorList(1);
       return true;
     } else {
-      setErrorsIndex([0, 0, 0, 0]);
+      setErrorList(0);
       return false;
     }
   };
@@ -55,10 +57,10 @@ const Box = ({ mainSchema }) => {
     user_input_parsed_to_array_of_Integers
   ) => {
     if (user_input_parsed_to_array_of_Integers.length > 7) {
-      setErrorsIndex([0, 1, 0, 0]);
+      setErrorList(2);
       return true;
     } else {
-      setErrorsIndex([0, 0, 0, 0]);
+      setErrorList(0);
       return false;
     }
   };
@@ -76,10 +78,10 @@ const Box = ({ mainSchema }) => {
     });
 
     if (!result) {
-      setErrorsIndex([0, 0, 1, 0]);
+      setErrorList(3);
       return true;
     } else {
-      setErrorsIndex([0, 0, 0, 0]);
+      setErrorList(0);
       return false;
     }
   };
@@ -118,7 +120,7 @@ const Box = ({ mainSchema }) => {
   };
 
   // this.setState({ input_value: userInput });
-  console.log(errorsIndex);
+  // console.log(errorsIndex);
   return (
     <Input
       type="text"
@@ -135,4 +137,9 @@ const mapStateToProps = (state) => ({
   mainSchema: state.mainSchema.mainSchema,
 });
 
-export default connect(mapStateToProps)(Box);
+const mapDispatchToProps = (dispatch) => ({
+  setErrorList: (errorList) => dispatch(setErrorList(errorList)),
+});
+// setErrorList;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Box);
