@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setMainSchema } from "../../../../../../redux/main-schema/mainSchema.actions";
+import { setStepsSchema } from "../../../../../../redux/steps/steps.actions";
+import { setStatusSchema } from "../../../../../../redux/status/status.actions";
 import _ from "lodash";
 import styled from "styled-components";
 
@@ -28,6 +30,8 @@ const SubmitInput = ({
   is_animating = false,
   inputList = [5, 2, 7, 1, 4, 6, 3],
   setMainSchema,
+  setStepsSchema,
+  setStatusSchema,
 }) => {
   const create_user_object = (inputList) => {
     let sorted_user_input = _.sortBy(inputList);
@@ -147,7 +151,8 @@ const SubmitInput = ({
     steps_schema.push([1, 1, 1, 1, 1, 1, 1]);
     // update redux
     setMainSchema(master);
-    return { master, steps_schema, status_schema };
+    setStepsSchema(steps_schema);
+    setStatusSchema(status_schema);
   };
   return (
     <>
@@ -166,6 +171,8 @@ const SubmitInput = ({
 
 const mapDispatchToProps = (dispatch) => ({
   setMainSchema: (mainSchema) => dispatch(setMainSchema(mainSchema)),
+  setStepsSchema: (stepsSchema) => dispatch(setStepsSchema(stepsSchema)),
+  setStatusSchema: (statusSchema) => dispatch(setStatusSchema(statusSchema)),
 });
 
 export default connect(null, mapDispatchToProps)(SubmitInput);
