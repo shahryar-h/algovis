@@ -1,34 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-
 import { setErrorList } from "../../../../../../redux/error-list/errorList.actions";
+import { setInputList } from "../../../../../../redux/input-list/inputList.actions";
+import { Input } from "./box_styles";
 
-import styled from "styled-components";
-const baseStyle = "margin: 0;";
-
-//TODO: make this a universal input in another folder for reuse
-export const Input = styled.input`
-  ${baseStyle}
-  appearance: none;
-  border-style: none;
-  height: 10%;
-  width: 80%;
-  color: white;
-  padding: 15px;
-  letter-spacing: 4px;
-  background: #1c7190;
-  font-size: 1.2em;
-  border-radius: 50px;
-  background: #0d7190;
-  box-shadow: inset 5px 5px 13px #095168, inset -5px -5px 13px #1191b8;
-  &:focus {
-    outline: none;
-  }
-`;
-const Box = ({ mainSchema, setErrorList }) => {
+const Box = ({ mainSchema, setErrorList, setInputList }) => {
   const [userInput, setUserInput] = useState("5,2,7,1,4,6,3");
-  // to go to redux
-  const [errorsIndex, setErrorsIndex] = useState([0, 0, 0, 0]);
 
   const blank_user_input = (userInitialInput) => {
     if (userInitialInput.trim() === "") {
@@ -42,7 +19,6 @@ const Box = ({ mainSchema, setErrorList }) => {
 
   const check_numeric = (userInput_comma_separated) => {
     let userInput_joinedString = userInput_comma_separated.join("");
-    // validations
     let isNumber = /^\d+$/.test(userInput_joinedString);
     if (isNumber === false) {
       setErrorList(1);
@@ -89,10 +65,7 @@ const Box = ({ mainSchema, setErrorList }) => {
   const validateInput = (e) => {
     let userInitialInput = e.target.value;
     setUserInput(userInitialInput);
-    if (blank_user_input(userInitialInput)) {
-      return;
-    }
-
+    if (blank_user_input(userInitialInput)) return;
     // // removes ,, situations
     let userInput_comma_separated = userInitialInput
       .split(",")
@@ -101,26 +74,17 @@ const Box = ({ mainSchema, setErrorList }) => {
       });
 
     if (check_numeric(userInput_comma_separated)) return;
-    // // case all user inputs are nums comma seperated:
+    // // case all user inputs are nums comma separated:
 
     let user_input_parsed_to_array_of_Integers = parse_to_array_of_Integers(
       userInput_comma_separated
     );
-
     if (validate_user_input_length(user_input_parsed_to_array_of_Integers))
       return;
     if (validate_user_input_range(user_input_parsed_to_array_of_Integers))
       return;
-
-    // return [
-    //   user_input_parsed_to_array_of_Integers
-    //     ? user_input_parsed_to_array_of_Integers
-    //     : [],
-    // ];
+    setInputList(user_input_parsed_to_array_of_Integers);
   };
-
-  // this.setState({ input_value: userInput });
-  // console.log(errorsIndex);
   return (
     <Input
       type="text"
@@ -139,7 +103,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setErrorList: (errorList) => dispatch(setErrorList(errorList)),
+  setInputList: (inputList) => dispatch(setInputList(inputList)),
 });
-// setErrorList;
 
 export default connect(mapStateToProps, mapDispatchToProps)(Box);
