@@ -38,56 +38,87 @@ const Box = ({ mainSchema }) => {
     }
   };
 
-  check_numeric = (userInput_comma_seperated) => {
-    console.log("hellooo", userInput_comma_seperated);
-    let userInput_joinedSrting = userInput_comma_seperated.join("");
+  const check_numeric = (userInput_comma_separated) => {
+    let userInput_joinedString = userInput_comma_separated.join("");
     // validations
-    let isnum = /^\d+$/.test(userInput_joinedSrting);
-    if (isnum === false) {
-      this.setState({
-        errorsIndex: [1, 0, 0, 0],
-      });
+    let isNumber = /^\d+$/.test(userInput_joinedString);
+    if (isNumber === false) {
+      setErrorsIndex([1, 0, 0, 0]);
       return true;
+    } else {
+      setErrorsIndex([0, 0, 0, 0]);
+      return false;
     }
-    this.setState({
-      errorsIndex: [0, 0, 0, 0],
+  };
+
+  const validate_user_input_length = (
+    user_input_parsed_to_array_of_Integers
+  ) => {
+    if (user_input_parsed_to_array_of_Integers.length > 7) {
+      setErrorsIndex([0, 1, 0, 0]);
+      return true;
+    } else {
+      setErrorsIndex([0, 0, 0, 0]);
+      return false;
+    }
+  };
+  const parse_to_array_of_Integers = (userInput_comma_separated) => {
+    return userInput_comma_separated.map((num) => {
+      return parseInt(num);
+    });
+  };
+
+  const validate_user_input_range = (
+    user_input_parsed_to_array_of_Integers
+  ) => {
+    let result = user_input_parsed_to_array_of_Integers.every(function (e) {
+      return e < 100;
     });
 
-    return false;
+    if (!result) {
+      setErrorsIndex([0, 0, 1, 0]);
+      return true;
+    } else {
+      setErrorsIndex([0, 0, 0, 0]);
+      return false;
+    }
   };
+
   const validateInput = (e) => {
     let userInitialInput = e.target.value;
     setUserInput(userInitialInput);
-    if (this.blank_user_input(userInitialInput)) {
-      return true, [];
+    if (blank_user_input(userInitialInput)) {
+      return;
     }
 
     // // removes ,, situations
-    let userInput_comma_seperated = userInitialInput
+    let userInput_comma_separated = userInitialInput
       .split(",")
       .filter((num) => {
         return num != "";
       });
 
-    if (check_numeric(userInput_comma_seperated)) return true, [];
+    if (check_numeric(userInput_comma_separated)) return;
     // // case all user inputs are nums comma seperated:
 
-    let user_input_parsed_to_array_of_Integers =
-      this.pasre_to_array_of_Integers(userInput_comma_seperated);
-    if (this.validate_user_input_length(user_input_parsed_to_array_of_Integers))
-      return true, [];
-    if (this.validate_user_input_range(user_input_parsed_to_array_of_Integers))
-      return true, [];
+    let user_input_parsed_to_array_of_Integers = parse_to_array_of_Integers(
+      userInput_comma_separated
+    );
 
-    return [
-      false,
-      user_input_parsed_to_array_of_Integers
-        ? user_input_parsed_to_array_of_Integers
-        : [],
-    ];
+    if (validate_user_input_length(user_input_parsed_to_array_of_Integers))
+      return;
+    if (validate_user_input_range(user_input_parsed_to_array_of_Integers))
+      return;
+
+    // return [
+    //   user_input_parsed_to_array_of_Integers
+    //     ? user_input_parsed_to_array_of_Integers
+    //     : [],
+    // ];
   };
 
-  this.setState({ input_value: userInput });
+  // this.setState({ input_value: userInput });
+  console.log(errorsIndex);
   return (
     <Input
       type="text"
