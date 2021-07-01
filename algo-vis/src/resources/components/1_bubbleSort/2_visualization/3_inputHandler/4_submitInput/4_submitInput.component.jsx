@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { setMainSchema } from "../../../../../../redux/main-schema/mainSchema.actions";
 import _ from "lodash";
 import styled from "styled-components";
 
@@ -22,7 +24,11 @@ export const SortButton = styled.div`
   }
 `;
 
-export default function SubmitInput({ is_animating = false, inputList = [] }) {
+const SubmitInput = ({
+  is_animating = false,
+  inputList = [5, 2, 7, 1, 4, 6, 3],
+  setMainSchema,
+}) => {
   const create_user_object = (inputList) => {
     let sorted_user_input = _.sortBy(inputList);
 
@@ -140,6 +146,7 @@ export default function SubmitInput({ is_animating = false, inputList = [] }) {
     status_schema.push("List is sorted");
     steps_schema.push([1, 1, 1, 1, 1, 1, 1]);
     // update redux
+    setMainSchema(master);
     return { master, steps_schema, status_schema };
   };
   return (
@@ -155,4 +162,10 @@ export default function SubmitInput({ is_animating = false, inputList = [] }) {
       )}
     </>
   );
-}
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  setMainSchema: (mainSchema) => dispatch(setMainSchema(mainSchema)),
+});
+
+export default connect(null, mapDispatchToProps)(SubmitInput);

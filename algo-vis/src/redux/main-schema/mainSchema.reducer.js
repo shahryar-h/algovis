@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  mainSchema: "1,3,4,1,2,3",
+  mainSchema: [],
 };
 const mainSchemaReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

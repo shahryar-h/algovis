@@ -1,4 +1,4 @@
 export const setMainSchema = (mainSchema) => ({
-  type: "",
+  type: "SET_MAIN_SCHEMA",
   payload: mainSchema,
 });
