@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import ControlButtons from "./3_ControlButtons";
-import Steps from "./3_Steps";
+import ControlButtons from "../3_controls/3_ControlButtons";
+import Steps from "../3_status/3_Steps";
 // TODO: seperate control buttons
 class Diagram extends Component {
   state = {

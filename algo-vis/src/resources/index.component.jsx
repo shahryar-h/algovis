@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Controller from "./components/1_Controller";
+import BubbleSort from "./components/0_bubbleSort/1_bubbleSort.cpmponent";
 
 import "./main.sass";
 
@@ -7,7 +7,7 @@ class Index extends Component {
   render() {
     return (
       <div className="indexContainer">
-        <Controller />
+        <BubbleSort />
       </div>
     );
   }

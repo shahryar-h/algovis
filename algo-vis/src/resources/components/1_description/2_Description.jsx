@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Rest = styled.div`
   height: 80vh;
-  /* background-color: brown; */
 `;
 class Description extends Component {
   render() {
