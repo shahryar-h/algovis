@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Box from "./4_box/4_box.component";
+import SubmitInput from "./4_submitInput/4_submitInput.component";
 
 export default function InputHandler({ is_animating }) {
   const [input_value, setInputValue] = useState("5,1,4,2,7,6");
@@ -43,6 +44,7 @@ export default function InputHandler({ is_animating }) {
       <Box />
       {/* {error} */}
       {/* {submit} */}
+      <SubmitInput />
     </div>
   );
 }
