@@ -11,15 +11,15 @@ export const AlgoSteps = styled.div`
   letter-spacing: 0rm;
 `;
 
-export const Status = styled.div`
+export const StatusField = styled.div`
   padding: 15px;
   min-height: 3em;
   ${baseStyle}
 `;
 
-export const SudoStep = styled(Status)`
+export const SudoStep = styled(StatusField)`
   padding: 0px;
-  background: ${(props) => (props.selected ? "" : "")};
+  background: ${(props) => (props.selected ? "black" : "")};
   min-height: 0em;
 `;
 export const SudoStepContainer = styled.div`
