@@ -1,4 +1,4 @@
-export const actionName = (payload) => ({
-  type: "SET_STEP",
+export const setNextStep = (payload) => ({
+  type: "SET_NEXT_STEP",
   payload,
 });
