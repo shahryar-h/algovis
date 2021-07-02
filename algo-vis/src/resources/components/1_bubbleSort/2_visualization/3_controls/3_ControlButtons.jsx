@@ -9,23 +9,24 @@ const Buttons = [
   { class: "next", func_arg: "next", button_text: "N" },
   { class: "sortEnd", func_arg: "end", button_text: "E" },
 ];
-const ControlButtons = ({ setNextStep }) => {
+
+const ControlButtons = ({ setNextStep, schemaLength, step }) => {
   const handle_control_buttons = (arg) => {
     switch (arg) {
       case "start":
         setNextStep(0);
         break;
       case "prev":
-        setNextStep(0);
+        setNextStep(step - 1);
         break;
       case "playPause":
         // setNextStep(0);
         break;
       case "next":
-        setNextStep(0);
+        setNextStep(step + 1);
         break;
       case "end":
-        setNextStep(0);
+        setNextStep(schemaLength);
         break;
     }
   };
@@ -48,7 +49,8 @@ const ControlButtons = ({ setNextStep }) => {
 };
 
 const mapStateToProps = (state) => ({
-  // mainSchema: state.mainSchema.mainSchema,
+  schemaLength: state.mainSchema.schemaLength,
+  step: state.step.step,
 });
 
 const mapDispatchToProps = (dispatch) => ({
