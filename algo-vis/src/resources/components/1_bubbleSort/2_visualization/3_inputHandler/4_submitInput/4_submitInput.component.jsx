@@ -32,7 +32,7 @@ export const SortButton = styled.input.attrs({
 
 const SubmitInput = ({
   is_animating = false,
-  inputList = [5, 2, 7, 1, 4, 6, 3],
+  inputList = [],
   setMainSchema,
   setStepsSchema,
   setStatusSchema,
@@ -157,6 +157,7 @@ const SubmitInput = ({
     status_schema.push("List is sorted");
     steps_schema.push([1, 1, 1, 1, 1, 1, 1]);
     // update redux
+    console.log({ master });
     setMainSchema(master);
     setStepsSchema(steps_schema);
     setStatusSchema(status_schema);
@@ -165,10 +166,11 @@ const SubmitInput = ({
   const handleAnotherSet = () => {
     toggleAnimate();
   };
+  console.log({ inputList });
   return (
     <>
       {isAnimating ? (
-        <SortButton value="amother set" onClick={(e) => handleAnotherSet(e)} />
+        <SortButton value="another set" onClick={(e) => handleAnotherSet(e)} />
       ) : (
         <SortButton
           disabled={errorList != ""}
@@ -190,5 +192,6 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   errorList: state.errorList.errorList,
   isAnimating: state.mainSchema.isAnimating,
+  inputList: state.inputList.inputList,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(SubmitInput);

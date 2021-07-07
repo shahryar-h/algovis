@@ -3,13 +3,14 @@ import styled from "styled-components";
 
 const Rest = styled.div`
   height: 80vh;
+  width: 100%;
 `;
 class Description extends Component {
   render() {
     return (
-      <div>
+      <>
         <Rest>Description</Rest>
-      </div>
+      </>
     );
   }
 }

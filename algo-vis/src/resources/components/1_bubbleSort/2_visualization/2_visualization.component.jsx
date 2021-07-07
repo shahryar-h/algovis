@@ -5,11 +5,11 @@ import ControlButtons from "./3_controls/3_ControlButtons";
 import Visualizer from "./3_visualizer/3_Visualizer_component";
 export default function Visualization() {
   return (
-    <>
-      <InputHandler />
+    <div>
       <Status />
-      <ControlButtons />
       <Visualizer />
-    </>
+      <ControlButtons />
+      <InputHandler />
+    </div>
   );
 }

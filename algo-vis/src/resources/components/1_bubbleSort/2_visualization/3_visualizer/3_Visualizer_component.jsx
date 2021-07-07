@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import "./visualizer.sass";
 const Visualizer = ({ mainSchema, step }) => {
   return (
     <div className="sortItems">
