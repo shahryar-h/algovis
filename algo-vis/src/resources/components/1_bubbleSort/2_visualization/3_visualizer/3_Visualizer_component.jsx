@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./visualizer.sass";
+import styled from "styled-components";
+
+const SortItems = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+`;
+
 const Visualizer = ({ mainSchema, step }) => {
   return (
-    <div className="sortItems">
+    <SortItems>
       {mainSchema[step]?.map((item, index) => (
         <div
           key={`itemBox-${item.sortPosiotion}-${index}`}
@@ -16,7 +24,7 @@ const Visualizer = ({ mainSchema, step }) => {
           {item.userInput}
         </div>
       ))}
-    </div>
+    </SortItems>
   );
 };
 const mapStateToProps = (state) => ({
