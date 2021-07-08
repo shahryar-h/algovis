@@ -6,7 +6,7 @@ export const Input = styled.input`
   ${baseStyle}
   appearance: none;
   border-style: none;
-  height: 10%;
+
   width: 80%;
   color: white;
   padding: 15px;

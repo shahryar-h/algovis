@@ -323,14 +323,14 @@ class InputBox extends Component {
 
     return (
       <InputSection>
-        <Input
+        {/* <Input
           type="text"
           autoComplete="off"
           name="name"
           value={input_value}
           onChange={(e) => this.handleInputs(e)}
           disabled={is_animating}
-        />
+        /> */}
         {is_animating ? (
           <SortButton onClick={(e) => this.handleAnotherSet(e)}>
             Another set of Numbers

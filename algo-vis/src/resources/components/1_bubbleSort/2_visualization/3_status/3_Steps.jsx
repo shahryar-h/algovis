@@ -17,12 +17,10 @@ export default function Steps({ schema = [], statusSchema }) {
 
   return (
     <>
-      <div>
-        <AlgoSteps>
-          <Status>{statusSchema}</Status>
-          <SudoStepContainer>{renderSudoCodeSteps(schema)}</SudoStepContainer>
-        </AlgoSteps>
-      </div>
+      <AlgoSteps>
+        <Status>{statusSchema}</Status>
+        <SudoStepContainer>{renderSudoCodeSteps(schema)}</SudoStepContainer>
+      </AlgoSteps>
     </>
   );
 }
