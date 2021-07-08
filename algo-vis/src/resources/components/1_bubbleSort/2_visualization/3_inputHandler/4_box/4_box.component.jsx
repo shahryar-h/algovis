@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setErrorList } from "../../../../../../redux/error-list/errorList.actions";
 import { setInputList } from "../../../../../../redux/input-list/inputList.actions";
+
 import { Input } from "./box_styles";
 
 const Box = ({ mainSchema, setErrorList, setInputList }) => {

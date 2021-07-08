@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 const DisplayError = ({ errorList }) => {
-  return <div>{errorList}</div>;
+  return <div style={{ minHeight: "3em" }}>{errorList}</div>;
 };
 
 const mapStateToProps = (state) => ({

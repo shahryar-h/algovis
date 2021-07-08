@@ -4,6 +4,7 @@ import { setMainSchema } from "../../../../../../redux/main-schema/mainSchema.ac
 import { toggleAnimate } from "../../../../../../redux/main-schema/mainSchema.actions";
 import { setStepsSchema } from "../../../../../../redux/steps/steps.actions";
 import { setStatusSchema } from "../../../../../../redux/status/status.actions";
+import { setNextStep } from "../../../../../../redux/controls/controls.actions";
 
 import _ from "lodash";
 import styled from "styled-components";
@@ -39,6 +40,7 @@ const SubmitInput = ({
   errorList,
   isAnimating,
   toggleAnimate,
+  setNextStep,
 }) => {
   const create_user_object = (inputList) => {
     let sorted_user_input = _.sortBy(inputList);
@@ -162,6 +164,8 @@ const SubmitInput = ({
     setStepsSchema(steps_schema);
     setStatusSchema(status_schema);
     toggleAnimate();
+
+    setNextStep(0);
   };
   const handleAnotherSet = () => {
     toggleAnimate();
@@ -187,6 +191,7 @@ const mapDispatchToProps = (dispatch) => ({
   setStepsSchema: (stepsSchema) => dispatch(setStepsSchema(stepsSchema)),
   setStatusSchema: (statusSchema) => dispatch(setStatusSchema(statusSchema)),
   toggleAnimate: () => dispatch(toggleAnimate()),
+  setNextStep: (step) => dispatch(setNextStep(step)),
 });
 
 const mapStateToProps = (state) => ({
