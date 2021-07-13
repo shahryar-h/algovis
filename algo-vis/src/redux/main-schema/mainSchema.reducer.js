@@ -1,9 +1,13 @@
+import { initialMainSchema } from "./initial-schemas/initial-main-schema.js";
+import { initialStepSchema } from "./initial-schemas/initial-step-schema";
+import { initialStatusSchema } from "./initial-schemas/initial-status-schema";
+
 const INITIAL_STATE = {
-  mainSchema: [],
+  mainSchema: initialMainSchema,
   isAnimating: true,
-  schemaLength: 0,
-  statusSchema: [],
-  stepSchema: [],
+  schemaLength: initialMainSchema.length,
+  statusSchema: initialStatusSchema,
+  stepSchema: initialStepSchema,
 };
 const mainSchemaReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
@@ -11,7 +15,7 @@ const mainSchemaReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         mainSchema: action.payload.main,
-        schemaLength: action.payload.length,
+        schemaLength: action.payload.main.length,
         statusSchema: action.payload.statusSchema,
         stepSchema: action.payload.stepSchema,
       };

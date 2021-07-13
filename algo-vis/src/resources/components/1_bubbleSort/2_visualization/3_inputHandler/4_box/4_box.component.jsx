@@ -86,7 +86,6 @@ const Box = ({ mainSchema, setErrorList, setInputList, isAnimating }) => {
       return;
     setInputList(user_input_parsed_to_array_of_Integers);
   };
-  console.log(mainSchema);
   return (
     <Input
       type="text"
@@ -100,7 +99,7 @@ const Box = ({ mainSchema, setErrorList, setInputList, isAnimating }) => {
 };
 
 const mapStateToProps = (state) => ({
-  mainSchema: state.mainSchema.mainSchema,
+  mainSchema: state.mainSchema,
   isAnimating: state.mainSchema.isAnimating,
 });
 
