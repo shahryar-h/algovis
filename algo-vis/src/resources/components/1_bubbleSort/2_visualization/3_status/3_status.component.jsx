@@ -37,8 +37,8 @@ const Status = ({ stepSchema = [], statusSchema, step }) => {
 };
 
 const mapStateToProps = (state) => ({
-  stepSchema: state.stepSchema.stepSchema,
-  statusSchema: state.statusSchema.statusSchema,
+  stepSchema: state.mainSchema.stepSchema,
+  statusSchema: state.mainSchema.statusSchema,
   step: state.step.step,
 });
 

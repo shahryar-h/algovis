@@ -5,7 +5,7 @@ import { setInputList } from "../../../../../../redux/input-list/inputList.actio
 
 import { Input } from "./box_styles";
 
-const Box = ({ mainSchema, setErrorList, setInputList }) => {
+const Box = ({ mainSchema, setErrorList, setInputList, isAnimating }) => {
   const [userInput, setUserInput] = useState("5,2,7,1,4,6,3");
 
   const blank_user_input = (userInitialInput) => {
@@ -86,6 +86,7 @@ const Box = ({ mainSchema, setErrorList, setInputList }) => {
       return;
     setInputList(user_input_parsed_to_array_of_Integers);
   };
+  console.log(mainSchema);
   return (
     <Input
       type="text"
@@ -93,13 +94,14 @@ const Box = ({ mainSchema, setErrorList, setInputList }) => {
       name="name"
       value={userInput}
       onChange={(e) => validateInput(e)}
-      //   disabled={is_animating}
+      disabled={isAnimating}
     />
   );
 };
 
 const mapStateToProps = (state) => ({
   mainSchema: state.mainSchema.mainSchema,
+  isAnimating: state.mainSchema.isAnimating,
 });
 
 const mapDispatchToProps = (dispatch) => ({

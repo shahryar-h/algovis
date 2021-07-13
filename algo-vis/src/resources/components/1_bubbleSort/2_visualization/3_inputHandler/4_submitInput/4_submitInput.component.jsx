@@ -74,7 +74,6 @@ const SubmitInput = ({
       // set swapped to false assuming that the numbers are sorted
       // if after next round this stays false it means we have a sorted
       // array so we stop the process
-      // new_object[new_object.length] = [2, 2, 1, 1, 1, 1, 1];
       steps_schema.push([2, 2, 2, 1, 1, 1, 1]);
 
       status_schema.push(` Set the swapped flag to false. 
@@ -159,10 +158,14 @@ const SubmitInput = ({
     status_schema.push("List is sorted");
     steps_schema.push([1, 1, 1, 1, 1, 1, 1]);
     // update redux
-    console.log({ master });
-    setMainSchema(master);
-    setStepsSchema(steps_schema);
-    setStatusSchema(status_schema);
+    const payload = {};
+    payload.main = master;
+    payload.stepSchema = steps_schema;
+    payload.statusSchema = status_schema;
+    // console.log(payload);
+    setMainSchema(payload);
+    // setStepsSchema(steps_schema);
+    // setStatusSchema(status_schema);
     toggleAnimate();
 
     setNextStep(0);
