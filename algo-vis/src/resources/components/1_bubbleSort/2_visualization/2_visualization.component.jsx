@@ -10,7 +10,7 @@ const VisContainer = styled.div`
   display: grid;
   grid-auto-columns: 1fr;
   grid-template-columns: 1fr;
-  grid-template-rows: 2.5fr 5.5fr 1.5fr 2.5fr;
+  grid-template-rows: 2.5fr 3.5fr 1fr 2fr;
   gap: 0px 0px;
   grid-template-areas: "." "." "." ".";
 `;

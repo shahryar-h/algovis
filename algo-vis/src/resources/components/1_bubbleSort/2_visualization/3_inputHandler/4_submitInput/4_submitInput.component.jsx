@@ -2,8 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { setMainSchema } from "../../../../../../redux/main-schema/mainSchema.actions";
 import { toggleAnimate } from "../../../../../../redux/main-schema/mainSchema.actions";
-import { setStepsSchema } from "../../../../../../redux/steps/steps.actions";
-import { setStatusSchema } from "../../../../../../redux/status/status.actions";
 import { setNextStep } from "../../../../../../redux/controls/controls.actions";
 
 import _ from "lodash";
@@ -32,11 +30,8 @@ export const SortButton = styled.input.attrs({
 `;
 
 const SubmitInput = ({
-  is_animating = false,
   inputList = [],
   setMainSchema,
-  setStepsSchema,
-  setStatusSchema,
   errorList,
   isAnimating,
   toggleAnimate,
@@ -162,10 +157,7 @@ const SubmitInput = ({
     payload.main = master;
     payload.stepSchema = steps_schema;
     payload.statusSchema = status_schema;
-    // console.log(payload);
     setMainSchema(payload);
-    // setStepsSchema(steps_schema);
-    // setStatusSchema(status_schema);
     toggleAnimate();
 
     setNextStep(0);
@@ -173,7 +165,6 @@ const SubmitInput = ({
   const handleAnotherSet = () => {
     toggleAnimate();
   };
-  console.log({ inputList });
   return (
     <>
       {isAnimating ? (
@@ -191,8 +182,6 @@ const SubmitInput = ({
 
 const mapDispatchToProps = (dispatch) => ({
   setMainSchema: (mainSchema) => dispatch(setMainSchema(mainSchema)),
-  setStepsSchema: (stepsSchema) => dispatch(setStepsSchema(stepsSchema)),
-  setStatusSchema: (statusSchema) => dispatch(setStatusSchema(statusSchema)),
   toggleAnimate: () => dispatch(toggleAnimate()),
   setNextStep: (step) => dispatch(setNextStep(step)),
 });

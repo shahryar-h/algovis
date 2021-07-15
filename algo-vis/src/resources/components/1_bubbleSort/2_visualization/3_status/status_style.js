@@ -18,9 +18,16 @@ export const StatusField = styled.div`
 `;
 
 export const SudoStep = styled(StatusField)`
-  padding: 0px;
-  background: ${(props) => (props.selected ? "black" : "")};
+  padding: 4px;
+  background: ${(props) => (props.selected ? "#0d7190" : "")};
+
+  box-shadow: ${(props) =>
+    props.selected
+      ? "inset 5px 5px 13px #095168,inset -5px -5px 13px #1191b8"
+      : ""};
+
   min-height: 0em;
+  margin-bottom: 0.3rem;
 `;
 export const SudoStepContainer = styled.div`
   letter-spacing: 0.1em;
