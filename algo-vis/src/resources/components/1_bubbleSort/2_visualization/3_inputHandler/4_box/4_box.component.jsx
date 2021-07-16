@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setErrorList } from "../../../../../../redux/error-list/errorList.actions";
 import { setInputList } from "../../../../../../redux/input-list/inputList.actions";
+import { Form, Field } from "react-final-form";
 
 import { Input } from "./box_styles";
 
@@ -18,27 +19,21 @@ const Box = ({ mainSchema, setErrorList, setInputList, isAnimating }) => {
     }
   };
 
-  const check_numeric = (userInput_comma_separated) => {
-    let userInput_joinedString = userInput_comma_separated.join("");
-    let isNumber = /^\d+$/.test(userInput_joinedString);
-    if (isNumber === false) {
-      setErrorList(1);
-      return true;
-    } else {
-      setErrorList(0);
-      return false;
-    }
+  const check_numeric = (userInput) => {
+    // let userInput_joinedString = userInput_comma_separated.join("");
+    var userInput_commaRemoved = userInput.replace(/,/g, "");
+
+    let isNumber = /^\d+$/.test(userInput_commaRemoved);
+    return isNumber ? true : false;
   };
 
   const validate_user_input_length = (
     user_input_parsed_to_array_of_Integers
   ) => {
     if (user_input_parsed_to_array_of_Integers.length > 7) {
-      setErrorList(2);
-      return true;
-    } else {
-      setErrorList(0);
       return false;
+    } else {
+      return true;
     }
   };
   const parse_to_array_of_Integers = (userInput_comma_separated) => {
@@ -55,11 +50,9 @@ const Box = ({ mainSchema, setErrorList, setInputList, isAnimating }) => {
     });
 
     if (!result) {
-      setErrorList(3);
-      return true;
-    } else {
-      setErrorList(0);
       return false;
+    } else {
+      return true;
     }
   };
 
@@ -84,17 +77,84 @@ const Box = ({ mainSchema, setErrorList, setInputList, isAnimating }) => {
       return;
     if (validate_user_input_range(user_input_parsed_to_array_of_Integers))
       return;
-    setInputList(user_input_parsed_to_array_of_Integers);
+  };
+  const validateUserInput = (values = { userInput: "2,4,1,22,3" }) => {
+    const errors = {};
+    const userInput = values.userInput;
+
+    if (!userInput) {
+      errors.userInput = "Please provide a set of comma separated numbers";
+    } else {
+      if (!check_numeric(userInput)) {
+        errors.userInput = "Please numbers";
+      } else {
+        let userInput_comma_separated = userInput.split(",").filter((num) => {
+          return num != "";
+        });
+        const int_userInput = parse_to_array_of_Integers(
+          userInput_comma_separated
+        );
+
+        if (int_userInput.length > 7) {
+          errors.userInput = "sorry 7 only";
+        } else {
+          if (!validate_user_input_range(int_userInput)) {
+            errors.userInput = "sorry only between 1-100";
+          } else {
+            setInputList(int_userInput);
+          }
+        }
+      }
+    }
+    return errors;
+  };
+  const onSubmit = (value) => {
+    const a = value.userInput.split(",").filter((num) => {
+      return num != "";
+    });
+    setInputList(parse_to_array_of_Integers(a));
   };
   return (
-    <Input
-      type="text"
-      autoComplete="off"
-      name="name"
-      value={userInput}
-      onChange={(e) => validateInput(e)}
-      disabled={isAnimating}
-    />
+    <>
+      {console.log("asda")}
+
+      <Form
+        onSubmit={onSubmit}
+        validate={validateUserInput}
+        render={({ handleSubmit, form, submitting, pristine, values }) => (
+          <form onSubmit={handleSubmit}>
+            <Field name="userInput">
+              {({ input, meta }) => (
+                <div>
+                  {/* <input {...input} type="text" placeholder="Username" /> */}
+                  <Input
+                    {...input}
+                    type="text"
+                    autoComplete="off"
+                    name="name"
+                    disabled={isAnimating}
+                  />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            {/* <div className="buttons">
+              <button type="submit" disabled={submitting}>
+                Submit
+              </button>
+              <button
+                type="button"
+                onClick={form.reset}
+                disabled={submitting || pristine}
+              >
+                Reset
+              </button>
+            </div>
+            <pre>{JSON.stringify(values, 0, 2)}</pre> */}
+          </form>
+        )}
+      />
+    </>
   );
 };
 
