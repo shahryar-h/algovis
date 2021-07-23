@@ -7,7 +7,6 @@ const handle_control_buttons = (arg) => {
   const schemaLength = state.mainSchema.schemaLength;
   const dispatch = store.dispatch;
 
-  console.log(arg);
   switch (arg) {
     case "start":
       dispatch(setNextStep(0));
