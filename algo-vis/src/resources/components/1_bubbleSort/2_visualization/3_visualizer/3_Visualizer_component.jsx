@@ -1,28 +1,19 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import "./visualizer.sass";
-import styled from "styled-components";
-
-const SortItems = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: flex-end;
-`;
+import { SortItems, SortItem } from "./visualizer.styles";
+import { v4 as uuidv4 } from "uuid";
 
 const Visualizer = ({ mainSchema, step }) => {
   return (
     <SortItems>
       {mainSchema[step]?.map((item, index) => (
-        <div
-          key={`itemBox-${item.sortPosiotion}-${index}`}
-          className={
-            item.selected
-              ? `sortItem sortItem${item.sortPosiotion} selected`
-              : `sortItem sortItem${item.sortPosiotion}`
-          }
+        <SortItem
+          key={uuidv4()}
+          selected={item.selected}
+          sortPosition={item.sortPosiotion - 1}
         >
           {item.userInput}
-        </div>
+        </SortItem>
       ))}
     </SortItems>
   );
