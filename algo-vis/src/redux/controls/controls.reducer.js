@@ -1,5 +1,5 @@
 const initialState = {
-  step: 4,
+  step: 0,
 };
 
 export default (state = initialState, { type, payload }) => {
