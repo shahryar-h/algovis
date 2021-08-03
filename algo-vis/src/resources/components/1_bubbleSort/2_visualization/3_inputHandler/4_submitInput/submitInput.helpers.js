@@ -4,7 +4,7 @@ import { setNextStep } from "../../../../../../redux/controls/controls.actions";
 import _ from "lodash";
 import store from "../../../../../../redux/store";
 
-const dispatch = store.dispatch();
+const dispatch = store.dispatch;
 
 const create_user_object = (inputList) => {
   let sorted_user_input = _.sortBy(inputList);
