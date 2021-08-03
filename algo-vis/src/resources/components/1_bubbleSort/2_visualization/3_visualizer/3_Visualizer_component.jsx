@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const Visualizer = ({ mainSchema, step }) => {
   return (
     <SortItems>
-      {mainSchema[step]?.map((item, index) => (
+      {mainSchema[step]?.map((item) => (
         <SortItem
           key={uuidv4()}
           selected={item.selected}
