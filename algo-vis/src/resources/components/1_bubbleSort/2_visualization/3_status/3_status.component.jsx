@@ -6,14 +6,12 @@ import { AlgoSteps, StatusField, SudoStepContainer } from "./status_style";
 const Status = ({ stepSchema = [], statusSchema, step }) => {
   return (
     <>
-      <div>
-        <AlgoSteps>
-          <StatusField>{statusSchema[step]}</StatusField>
-          <SudoStepContainer>
-            {renderSudoCodeSteps(stepSchema[step])}
-          </SudoStepContainer>
-        </AlgoSteps>
-      </div>
+      <AlgoSteps>
+        <StatusField>{statusSchema[step]}</StatusField>
+        <SudoStepContainer>
+          {renderSudoCodeSteps(stepSchema[step])}
+        </SudoStepContainer>
+      </AlgoSteps>
     </>
   );
 };

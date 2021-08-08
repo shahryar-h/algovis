@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 // .controllerContainer
 
@@ -13,7 +13,7 @@ const Sections = styled.section`
   height: 87%;
   padding: 4em;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   gap: 0% 0%;
   grid-template-areas: ". .";

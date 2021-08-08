@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
+
 const baseStyle = "margin: 0;";
 
 //TODO: make this a universal input in another folder for reuse

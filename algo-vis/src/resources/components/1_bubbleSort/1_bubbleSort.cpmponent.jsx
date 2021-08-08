@@ -9,7 +9,7 @@ class BubbleSort extends Component {
       <BubbleSortWrapper>
         <Sections>
           <Visualization />
-          <Description />
+          {/* <Description /> */}
         </Sections>
       </BubbleSortWrapper>
     );
