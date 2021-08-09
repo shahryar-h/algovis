@@ -13,6 +13,12 @@ const Error = styled.div`
   color: white;
   font-size: 0.8em;
 `;
+const StyledForm = styled.form`
+  display: flex;
+  /* justify-content: flex-end; */
+  align-items: flex-end;
+  flex-direction: column;
+`;
 const Box = ({ isAnimating }) => {
   return (
     <>
@@ -20,7 +26,7 @@ const Box = ({ isAnimating }) => {
         onSubmit={onSubmit}
         validate={validateUserInput}
         render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
+          <StyledForm onSubmit={handleSubmit}>
             <Field name="userInput">
               {({ input, meta }) => (
                 <>
@@ -35,7 +41,7 @@ const Box = ({ isAnimating }) => {
                 </>
               )}
             </Field>
-          </form>
+          </StyledForm>
         )}
       />
     </>

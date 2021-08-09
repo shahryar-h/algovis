@@ -8,8 +8,8 @@ const ControlsWrapper = styled.div`
 `;
 
 const ControlsButton = styled.button`
-  height: 3.5em;
-  width: 3.5em;
+  height: 95%;
+  width: 10%;
   border-radius: 7px;
   background: linear-gradient(145deg, #0e799a, #0c6682);
   box-shadow: 5px 5px 13px #095168, -5px -5px 13px #1191b8;
