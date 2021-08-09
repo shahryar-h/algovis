@@ -16,18 +16,16 @@ export const SortButton = styled.div`
   ${baseStyle}
 
   width: 50%;
-  border-radius: 50px;
-  background: red;
+  border-radius: 5px;
   padding: 0.8em;
-  border-radius: 50px;
   background: linear-gradient(145deg, #0e799a, #0c6682);
   box-shadow: 5px 5px 13px #095168, -5px -5px 13px #1191b8;
   text-align: center;
   color: white;
   cursor: pointer;
+  border: none;
 
   &:active {
-    border-radius: 50px;
     background: linear-gradient(145deg, #0c6682, #0e799a);
     box-shadow: 5px 5px 13px #095168, -5px -5px 13px #1191b8;
   }

@@ -7,10 +7,10 @@ class BubbleSort extends Component {
   render() {
     return (
       <BubbleSortWrapper>
-        <Sections>
-          <Visualization />
-          {/* <Description /> */}
-        </Sections>
+        {/* <Sections> */}
+        <Visualization />
+        {/* <Description /> */}
+        {/* </Sections> */}
       </BubbleSortWrapper>
     );
   }

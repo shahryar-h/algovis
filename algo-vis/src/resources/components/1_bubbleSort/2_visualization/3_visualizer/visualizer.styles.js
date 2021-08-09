@@ -4,6 +4,9 @@ const SortItems = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: flex-end;
+  width: 95%;
+  margin: 1em auto 0 auto;
+  height: 50%;
 `;
 
 const SortItem = styled.div`

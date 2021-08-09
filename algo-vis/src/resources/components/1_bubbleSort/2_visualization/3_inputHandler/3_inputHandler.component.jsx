@@ -5,10 +5,10 @@ import DisplayError from "./4_displayerror/4_displayError.component";
 
 export default function InputHandler() {
   return (
-    <div>
-      <Box />
-      <DisplayError />
+    <>
       <SubmitInput />
-    </div>
+      <Box />
+      {/* <DisplayError /> */}
+    </>
   );
 }

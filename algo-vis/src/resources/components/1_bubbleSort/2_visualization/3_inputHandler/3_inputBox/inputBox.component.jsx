@@ -343,11 +343,11 @@ class InputBox extends Component {
           </SortButton>
         )}
 
-        <FieldError>
+        {/* <FieldError>
           {errorsIndex.map((error, index) => {
             return error === 1 && errors[index];
           })}
-        </FieldError>
+        </FieldError> */}
       </InputSection>
     );
   }

@@ -3,19 +3,27 @@ import { connect } from "react-redux";
 import { Form, Field } from "react-final-form";
 import { Input } from "./box_styles";
 import { validateUserInput, onSubmit } from "./box.helpers";
+import styled from "styled-components/macro";
 // TODO: remove errors and everything related to them
 // update error messages here
+
+const Error = styled.div`
+  min-height: 2.5em;
+  /* width: 3em; */
+  color: white;
+  font-size: 0.8em;
+`;
 const Box = ({ isAnimating }) => {
   return (
     <>
       <Form
         onSubmit={onSubmit}
         validate={validateUserInput}
-        render={({ handleSubmit, form, submitting, pristine, values }) => (
+        render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <Field name="userInput">
               {({ input, meta }) => (
-                <div>
+                <>
                   <Input
                     {...input}
                     type="text"
@@ -23,8 +31,8 @@ const Box = ({ isAnimating }) => {
                     name="name"
                     disabled={isAnimating}
                   />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
-                </div>
+                  <Error>{meta.error && meta.touched && meta.error}</Error>
+                </>
               )}
             </Field>
           </form>

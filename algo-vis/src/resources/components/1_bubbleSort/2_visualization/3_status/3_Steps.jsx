@@ -1,6 +1,6 @@
 import React from "react";
 import { algoSteps } from "./steps.constants";
-import { AlgoSteps, Status, SudoStep, SudoStepContainer } from "./steps_style";
+import { AlgoSteps, Status, SudoStep, SudoStepContainer } from "./status_style";
 
 export default function Steps({ schema = [], statusSchema }) {
   const renderSudoCodeSteps = (pattern) => {
