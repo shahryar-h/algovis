@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/algovis/static/css/main.ab4582a8.chunk.css",
-    "main.js": "/algovis/static/js/main.dba28410.chunk.js",
-    "main.js.map": "/algovis/static/js/main.dba28410.chunk.js.map",
+    "main.js": "/algovis/static/js/main.b9801f83.chunk.js",
+    "main.js.map": "/algovis/static/js/main.b9801f83.chunk.js.map",
     "runtime-main.js": "/algovis/static/js/runtime-main.dd440a8d.js",
     "runtime-main.js.map": "/algovis/static/js/runtime-main.dd440a8d.js.map",
     "static/js/2.bb88c8ab.chunk.js": "/algovis/static/js/2.bb88c8ab.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.dd440a8d.js",
     "static/js/2.bb88c8ab.chunk.js",
     "static/css/main.ab4582a8.chunk.css",
-    "static/js/main.dba28410.chunk.js"
+    "static/js/main.b9801f83.chunk.js"
   ]
 }
