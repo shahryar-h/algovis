@@ -8,10 +8,11 @@ import styled from "styled-components/macro";
 // update error messages here
 
 const Error = styled.div`
-  min-height: 2.5em;
+  min-height: 1em;
   /* width: 3em; */
   color: white;
   font-size: 0.8em;
+  padding-top: 0.5em;
 `;
 const StyledForm = styled.form`
   display: flex;
@@ -36,6 +37,7 @@ const Box = ({ isAnimating }) => {
                     autoComplete="off"
                     name="name"
                     disabled={isAnimating}
+                    placeholder="Enter numbers here"
                   />
                   <Error>{meta.error && meta.touched && meta.error}</Error>
                 </>

@@ -9,19 +9,19 @@ const handle_control_buttons = (arg) => {
 
   switch (arg) {
     case "start":
-      dispatch(setNextStep(0));
+      dispatch(setNextStep(1));
       break;
     case "prev":
-      dispatch(setNextStep(step - 1));
+      step > 1 && dispatch(setNextStep(step - 1));
       break;
     case "playPause":
       // setNextStep(0);
       break;
     case "next":
-      dispatch(setNextStep(step + 1));
+      step < schemaLength - 1 && dispatch(setNextStep(step + 1));
       break;
     case "end":
-      dispatch(setNextStep(schemaLength));
+      dispatch(setNextStep(schemaLength - 1));
       break;
   }
 };

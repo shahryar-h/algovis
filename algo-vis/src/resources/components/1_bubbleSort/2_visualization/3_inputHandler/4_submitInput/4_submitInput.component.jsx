@@ -19,7 +19,10 @@ const SubmitInput = ({
   return (
     <>
       {isAnimating ? (
-        <SortButton value="another set" onClick={(e) => handleAnotherSet(e)} />
+        <SortButton
+          value="Start another set"
+          onClick={(e) => handleAnotherSet(e)}
+        />
       ) : (
         <SortButton
           disabled={errorList != ""}

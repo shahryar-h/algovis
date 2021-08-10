@@ -5,8 +5,8 @@ import styled from "styled-components/macro";
 const SortButton = styled.input.attrs({
   type: "submit",
 })`
-  width: 30%;
-  padding: 0.8em;
+  width: 40%;
+  padding: 20px;
   border-radius: 7px;
   background: linear-gradient(145deg, #0e799a, #0c6682);
   box-shadow: 5px 5px 13px #095168, -5px -5px 13px #1191b8;
@@ -17,7 +17,7 @@ const SortButton = styled.input.attrs({
   align-self: flex-end;
 
   &:active {
-    border-radius: 50px;
+    border-radius: 7px;
     background: linear-gradient(145deg, #0c6682, #0e799a);
     box-shadow: 5px 5px 13px #095168, -5px -5px 13px #1191b8;
   }

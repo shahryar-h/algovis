@@ -8,16 +8,25 @@ export const Input = styled.input`
   appearance: none;
   border-style: none;
   /* height: 10%; */
-  width: 40%;
+  width: 50%;
   color: white;
-  padding: 7px;
+  padding: 20px;
   letter-spacing: 3px;
   background: #1c7190;
   font-size: 0.8em;
   border-radius: 7px;
-  background: #0d7190;
-  box-shadow: inset 5px 5px 13px #095168, inset -5px -5px 13px #1191b8;
+  background: rgb(13, 113, 144);
+  box-shadow: rgb(9 81 104) 5px 5px 13px inset,
+    rgb(17 145 184) -5px -5px 13px inset;
+  /* box-shadow: ${(props) =>
+    props.disabled
+      ? "5px 5px 13px #095168, -5px -5px 13px #1191b8;"
+      : "inset 5px 5px 13px #095168, inset -5px -5px 13px #0d7190"}; */
   &:focus {
     outline: none;
+  }
+  ::placeholder {
+    color: white;
+    opacity: 0.5;
   }
 `;

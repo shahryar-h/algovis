@@ -5,6 +5,10 @@ const ControlsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  padding: 1em;
+  background: #0d7190;
+  box-shadow: inset 5px 5px 13px #095168, inset -5px -5px 13px #1191b8;
+  border-radius: 10px;
 `;
 
 const ControlsButton = styled.button`

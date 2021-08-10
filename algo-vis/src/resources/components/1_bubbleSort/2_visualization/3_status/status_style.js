@@ -44,10 +44,22 @@ export const PlaceHolder = styled.div`
   height: 1em;
   width: 2em;
   background-color: rosybrown;
+  margin-right: 2em;
+  margin-bottom: 1em;
   ${({ selected }) =>
     !selected &&
     `
   background-color: transparent;
   
   `}
+
+  clip-path: polygon(
+    0% 26%,
+    60% 41%,
+    41% 0%,
+    100% 50%,
+    43% 97%,
+    60% 58%,
+    0% 71%
+  );
 `;
