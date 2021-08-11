@@ -20,15 +20,19 @@ const SubmitInput = ({
     <>
       {isAnimating ? (
         <SortButton
-          value="Start another set"
+          // value=""
           onClick={(e) => handleAnotherSet(e)}
-        />
+        >
+          Start another set
+        </SortButton>
       ) : (
         <SortButton
           disabled={errorList != ""}
           onClick={() => sort_input(inputList)}
-          value="sort"
-        />
+          // value="sort"
+        >
+          sort
+        </SortButton>
       )}
     </>
   );

@@ -1,10 +1,8 @@
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 // TODO: make this a button
 
-const SortButton = styled.input.attrs({
-  type: "submit",
-})`
+const SortButton = styled.div`
   width: 40%;
   padding: 20px;
   border-radius: 7px;
