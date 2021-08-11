@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/algovis/static/css/main.ab4582a8.chunk.css",
-    "main.js": "/algovis/static/js/main.654fb5fe.chunk.js",
-    "main.js.map": "/algovis/static/js/main.654fb5fe.chunk.js.map",
-    "runtime-main.js": "/algovis/static/js/runtime-main.dd440a8d.js",
-    "runtime-main.js.map": "/algovis/static/js/runtime-main.dd440a8d.js.map",
-    "static/js/2.bb88c8ab.chunk.js": "/algovis/static/js/2.bb88c8ab.chunk.js",
-    "static/js/2.bb88c8ab.chunk.js.map": "/algovis/static/js/2.bb88c8ab.chunk.js.map",
-    "static/js/3.a2b7b207.chunk.js": "/algovis/static/js/3.a2b7b207.chunk.js",
-    "static/js/3.a2b7b207.chunk.js.map": "/algovis/static/js/3.a2b7b207.chunk.js.map",
+    "main.js": "/algovis/static/js/main.523cd198.chunk.js",
+    "main.js.map": "/algovis/static/js/main.523cd198.chunk.js.map",
+    "runtime-main.js": "/algovis/static/js/runtime-main.4b9fdbb4.js",
+    "runtime-main.js.map": "/algovis/static/js/runtime-main.4b9fdbb4.js.map",
+    "static/js/2.cf8c87bc.chunk.js": "/algovis/static/js/2.cf8c87bc.chunk.js",
+    "static/js/2.cf8c87bc.chunk.js.map": "/algovis/static/js/2.cf8c87bc.chunk.js.map",
+    "static/js/3.64f4a895.chunk.js": "/algovis/static/js/3.64f4a895.chunk.js",
+    "static/js/3.64f4a895.chunk.js.map": "/algovis/static/js/3.64f4a895.chunk.js.map",
     "index.html": "/algovis/index.html",
     "static/css/main.ab4582a8.chunk.css.map": "/algovis/static/css/main.ab4582a8.chunk.css.map",
-    "static/js/2.bb88c8ab.chunk.js.LICENSE.txt": "/algovis/static/js/2.bb88c8ab.chunk.js.LICENSE.txt"
+    "static/js/2.cf8c87bc.chunk.js.LICENSE.txt": "/algovis/static/js/2.cf8c87bc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.dd440a8d.js",
-    "static/js/2.bb88c8ab.chunk.js",
+    "static/js/runtime-main.4b9fdbb4.js",
+    "static/js/2.cf8c87bc.chunk.js",
     "static/css/main.ab4582a8.chunk.css",
-    "static/js/main.654fb5fe.chunk.js"
+    "static/js/main.523cd198.chunk.js"
   ]
 }
