@@ -1,6 +1,6 @@
 import React from "react";
-import Box from "./4_box/4_box.component";
-import SubmitInput from "./SubmitInput/SubmitInput.component";
+import Box from "./Box/Box";
+import SubmitInput from "./SubmitInput/SubmitInput";
 // import DisplayError from "./4_displayerror/4_displayError.component";
 // import ControlButtons from "../3_controls/3_ControlButtons";
 
