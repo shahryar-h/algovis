@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import Description from "./2_description/2_Description";
-import Visualization from "../../Components/visualization/Visualization";
+import Visualization from "../../Components/BubbleSortComponents/visualization/Visualization";
 import {
   BubbleSortWrapper,
   Sections,

@@ -1,5 +1,5 @@
-import { setInputList } from "../../../redux/input-list/inputList.actions";
-import store from "../../../redux/store";
+import { setInputList } from "../../../../redux/input-list/inputList.actions";
+import store from "../../../../redux/store";
 const check_numeric = (userInput) => {
   var userInput_commaRemoved = userInput.replace(/,/g, "");
   let isNumber = /^\d+$/.test(userInput_commaRemoved);

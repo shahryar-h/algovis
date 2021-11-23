@@ -1,5 +1,5 @@
-import store from "../../redux/store";
-import { setNextStep } from "../../redux/controls/controls.actions";
+import store from "../../../redux/store";
+import { setNextStep } from "../../../redux/controls/controls.actions";
 
 const handle_control_buttons = (arg) => {
   const state = store.getState();
