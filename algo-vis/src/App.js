@@ -1,11 +1,11 @@
 import React from "react";
-import Index from "./resources/index.component";
+import BubbleSort from "./resources/components/BubbleSort/BubbleSort";
 
 function App() {
   return (
-    <div className="App">
-      <Index />
-    </div>
+    <>
+      <BubbleSort />
+    </>
   );
 }
 

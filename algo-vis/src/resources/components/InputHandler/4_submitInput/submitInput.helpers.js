@@ -1,8 +1,10 @@
-import { setMainSchema } from "../../../../../../redux/main-schema/mainSchema.actions";
-import { toggleAnimate } from "../../../../../../redux/main-schema/mainSchema.actions";
-import { setNextStep } from "../../../../../../redux/controls/controls.actions";
+import { setMainSchema } from "../../../../redux/main-schema/mainSchema.actions";
+import { toggleAnimate } from "../../../../redux/main-schema/mainSchema.actions";
+// import { setNextStep } from "../../../../../../redux/controls/controls.actions";
+import { setNextStep } from "../../../../redux/controls/controls.actions";
+
 import _ from "lodash";
-import store from "../../../../../../redux/store";
+import store from "../../../../redux/store";
 
 const dispatch = store.dispatch;
 

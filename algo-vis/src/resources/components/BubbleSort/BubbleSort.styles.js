@@ -18,5 +18,13 @@ const Sections = styled.section`
   gap: 0% 0%;
   grid-template-areas: ". ."; */
 `;
+export const BubbleSortContainer = styled.main`
+  height: 100vh;
+  width: 100%;
+  background: #0d7190;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 export { BubbleSortWrapper, Sections };
