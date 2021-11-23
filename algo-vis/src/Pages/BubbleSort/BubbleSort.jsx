@@ -12,10 +12,7 @@ class BubbleSort extends Component {
     return (
       <BubbleSortContainer>
         <BubbleSortWrapper>
-          {/* <Sections> */}
           <Visualization />
-          {/* <Description /> */}
-          {/* </Sections> */}
         </BubbleSortWrapper>
       </BubbleSortContainer>
     );
