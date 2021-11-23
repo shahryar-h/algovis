@@ -1,5 +1,5 @@
 import React from "react";
-import BubbleSort from "./resources/components/BubbleSort/BubbleSort";
+import BubbleSort from "./Components/BubbleSort/BubbleSort";
 
 function App() {
   return (

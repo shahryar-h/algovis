@@ -2,9 +2,9 @@ import React from "react";
 import _ from "lodash";
 import { connect } from "react-redux";
 
-import { setMainSchema } from "../../../../redux/main-schema/mainSchema.actions";
-import { toggleAnimate } from "../../../../redux/main-schema/mainSchema.actions";
-import { setNextStep } from "../../../../redux/controls/controls.actions";
+import { setMainSchema } from "../../../redux/main-schema/mainSchema.actions";
+import { toggleAnimate } from "../../../redux/main-schema/mainSchema.actions";
+import { setNextStep } from "../../../redux/controls/controls.actions";
 
 import { SortButton } from "./submitInput.styles";
 import { handleAnotherSet, sort_input } from "./submitInput.helpers";
