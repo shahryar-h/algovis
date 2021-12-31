@@ -3,28 +3,25 @@ import { useObserver } from "mobx-react";
 import { StoreContext } from "./MobxProject";
 
 export default function Bugs() {
-  const { bugs, addBug, addVir, vir } = React.useContext(StoreContext);
+  const { inputArr, bbs, setInput, bugs, addBug } =
+    React.useContext(StoreContext);
 
   return useObserver(() => (
     <>
       <form
         onSubmit={(e) => {
-          console.log("hello");
-          //   addBug(e.target.bug.value);
-          //   addVir(e.target.vir.value);
           e.preventDefault();
+          let tt = e.target.inputArr.value.split(",").map(Number);
+          setInput(tt);
         }}
       >
-        <input name="bug" type="text" />
-        <input name="vir" type="text" />
+        <input name="inputArr" type="text" />
       </form>
-      {bugs.map((bug) => (
-        <li key={bug}>{bug}</li>
-      ))}
-
-      {vir.map((vir) => (
-        <li key={vir}>{vir}</li>
-      ))}
+      {inputArr}
+      <br />
+      <div> {bbs.map((n) => n + "  ")}</div>
+      <br />
+      {bugs.map((bug) => bug + " ")}
     </>
   ));
 }
