@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 const initialState = {
   inputList: [5, 2, 7, 1, 4, 6, 3],
   inputString: "5, 2, 7, 1, 4, 6, 3",
